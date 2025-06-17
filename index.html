@@ -3,132 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combomedia | Transformación Educativa Digital</title>
-    <meta name="description" content="Únete a nuestra comunidad educativa tecnológica y accede a cursos innovadores 100% en línea">
+    <title>Combomedia | Formulario de Contacto</title>
+    <meta name="description" content="Formulario de registro para nuestra plataforma educativa">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Estilos -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
 </head>
 <body>
-    <div class="wave-bg"></div>
-    
-    <main class="container">
-        <div class="logo">
-            <span class="logo-icon">🌐</span>
-            <span class="logo-text">combomedia</span>
-        </div>
+    <div class="container">
+        <header>
+            <h1>Regístrate en Combomedia</h1>
+            <p>Únete a nuestra comunidad educativa tecnológica</p>
+        </header>
         
-        <section class="hero">
-            <h1>Revoluciona tu <span class="highlight">educación digital</span></h1>
-            <p>Regístrate para acceso prioritario a nuestros cursos en tecnología y educación innovadora</p>
-        </section>
-        
-        <form id="contact-form" autocomplete="off">
-            <div class="input-group">
-                <i class="fas fa-user-graduate"></i>
-                <input type="text" name="nombre" placeholder="Nombre completo" required>
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="nombre">
+                    <i class="fas fa-user"></i>
+                </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
             </div>
             
-            <div class="input-group">
-                <i class="fas fa-envelope-open-text"></i>
-                <input type="email" name="email" placeholder="Correo electrónico" required>
+            <div class="form-group">
+                <label for="email">
+                    <i class="fas fa-envelope"></i>
+                </label>
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
             </div>
             
-            <div class="input-group">
-                <i class="fas fa-brain"></i>
-                <select name="interes" required>
+            <div class="form-group">
+                <label for="interes">
+                    <i class="fas fa-graduation-cap"></i>
+                </label>
+                <select id="interes" name="interes" required>
                     <option value="">Área de interés...</option>
-                    <option>Inteligencia Artificial</option>
-                    <option>Desarrollo Web Avanzado</option>
-                    <option>Ciencia de Datos</option>
-                    <option>Educación Tecnológica</option>
-                    <option>Marketing Digital</option>
+                    <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+                    <option value="Desarrollo Web">Desarrollo Web</option>
+                    <option value="Ciencia de Datos">Ciencia de Datos</option>
                 </select>
-                <i class="fas fa-chevron-down select-arrow"></i>
-            </div>
-            
-            <div class="input-group">
-                <i class="fas fa-graduation-cap"></i>
-                <select name="nivel" required>
-                    <option value="">Tu nivel actual...</option>
-                    <option>Principiante</option>
-                    <option>Intermedio</option>
-                    <option>Avanzado</option>
-                    <option>Profesional</option>
-                </select>
-                <i class="fas fa-chevron-down select-arrow"></i>
             </div>
             
             <button type="submit" id="submit-btn">
-                <span>Unirme a la comunidad</span>
-                <i class="fas fa-rocket"></i>
+                <i class="fas fa-paper-plane"></i> Enviar Registro
             </button>
+            
+            <div id="form-message"></div>
         </form>
-        
-        <div class="social-proof">
-            <p><i class="fas fa-users"></i> <strong>+5,000</strong> profesionales ya transformaron su educación con nosotros</p>
-        </div>
-    </main>
-    
+    </div>
+
     <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxpRhRzHkNBnpiavj5hfCFeH4ibl-AEe96a2wdbNTfI84q_B6hlvpIMTqDwyaIRBdIKfg/exec';
-    const form = document.getElementById('contact-form');
-    
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submit-btn');
-        const originalText = submitBtn.innerHTML;
-        
-        try {
-            // Mostrar estado de carga
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Procesando...';
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxgawhrttnz0KCDQ_8f_pGx3S4ZBC0AQ9lY0Enn6KrWH8jFQ6YNtYSAd6AR1XZfOyTs/exec';
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const messageDiv = document.getElementById('form-message');
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             submitBtn.disabled = true;
             
-            // Enviar datos
-            const formData = new URLSearchParams(new FormData(form));
-            const response = await fetch(scriptURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: formData
-            });
-            
-            if (!response.ok) throw new Error('Error en la respuesta del servidor');
-            
-            const result = await response.json();
-            
-            if (!result.success) throw new Error(result.error || 'Error al registrar los datos');
-            
-            // Éxito
-            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> ¡Registro exitoso!';
-            submitBtn.style.background = '#4BB543';
-            form.reset();
-            
-            // Mostrar feedback
-            alert('¡Gracias por registrarte! Te contactaremos pronto.');
-            
-        } catch (error) {
-            console.error('Error:', error);
-            submitBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error`;
-            submitBtn.style.background = '#FF3333';
-            
-            // Mostrar error específico
-            alert(`Error: ${error.message}\nPor favor intenta nuevamente.`);
-            
-        } finally {
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new FormData(form)
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Error en la red');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    messageDiv.innerHTML = '<p class="success"><i class="fas fa-check-circle"></i> ¡Registro exitoso!</p>';
+                    form.reset();
+                } else {
+                    throw new Error(data.error || 'Error en el servidor');
+                }
+            })
+            .catch(error => {
+                messageDiv.innerHTML = `<p class="error"><i class="fas fa-exclamation-triangle"></i> ${error.message}</p>`;
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Registro';
                 submitBtn.disabled = false;
-            }, 3000);
-        }
-    });
-</script>
+                
+                setTimeout(() => {
+                    messageDiv.innerHTML = '';
+                }, 5000);
+            });
+        });
+    </script>
 </body>
 </html>
