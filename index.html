@@ -76,57 +76,59 @@
     </main>
     
     <script>
-        // Configuración para Google Sheets
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxpRhRzHkNBnpiavj5hfCFeH4ibl-AEe96a2wdbNTfI84q_B6hlvpIMTqDwyaIRBdIKfg/exec';
-        const form = document.getElementById('contact-form');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxpRhRzHkNBnpiavj5hfCFeH4ibl-AEe96a2wdbNTfI84q_B6hlvpIMTqDwyaIRBdIKfg/exec';
+    const form = document.getElementById('contact-form');
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submit-btn');
+        const originalText = submitBtn.innerHTML;
         
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submit-btn');
-            
-            // Animación de carga
+        try {
+            // Mostrar estado de carga
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Procesando...';
             submitBtn.disabled = true;
             
-            // Enviar datos como URL encoded
-            fetch(scriptURL, { 
-                method: 'POST', 
+            // Enviar datos
+            const formData = new URLSearchParams(new FormData(form));
+            const response = await fetch(scriptURL, {
+                method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: new URLSearchParams(new FormData(form))
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Error en la respuesta del servidor');
-                return response.json();
-            })
-            .then(data => {
-                if (!data.success) throw new Error(data.error || 'Error desconocido');
-                
-                // Animación de éxito
-                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> ¡Registro exitoso!';
-                submitBtn.style.background = '#4BB543';
-                form.reset();
-                
-                // Mostrar mensaje de agradecimiento
-                alert('¡Gracias por registrarte! Pronto recibirás información sobre nuestros cursos.');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                submitBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${error.message || 'Error, intenta nuevamente'}`;
-                submitBtn.style.background = '#FF3333';
-                
-                // Mostrar alerta con el error específico
-                alert(`Hubo un error: ${error.message || 'Por favor intenta nuevamente más tarde'}`);
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    submitBtn.innerHTML = '<span>Unirme a la comunidad</span><i class="fas fa-rocket"></i>';
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                }, 3000);
+                body: formData
             });
-        });
-    </script>
+            
+            if (!response.ok) throw new Error('Error en la respuesta del servidor');
+            
+            const result = await response.json();
+            
+            if (!result.success) throw new Error(result.error || 'Error al registrar los datos');
+            
+            // Éxito
+            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> ¡Registro exitoso!';
+            submitBtn.style.background = '#4BB543';
+            form.reset();
+            
+            // Mostrar feedback
+            alert('¡Gracias por registrarte! Te contactaremos pronto.');
+            
+        } catch (error) {
+            console.error('Error:', error);
+            submitBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error`;
+            submitBtn.style.background = '#FF3333';
+            
+            // Mostrar error específico
+            alert(`Error: ${error.message}\nPor favor intenta nuevamente.`);
+            
+        } finally {
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+            }, 3000);
+        }
+    });
+</script>
 </body>
 </html>
