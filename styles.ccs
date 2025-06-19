@@ -210,4 +210,96 @@ button[type="submit"]:active {
     .hero p {
         font-size: 0.9rem;
     }
+/* Añadir al final del CSS existente */
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0 1rem;
+    font-size: 0.85rem;
+}
+
+.checkbox-group input {
+    margin-right: 0.8rem;
+    accent-color: var(--primary);
+}
+
+.checkbox-group a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+.success-message {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: rgba(75, 181, 67, 0.1);
+    border-radius: var(--radius);
+    color: #2e7d32;
+    font-size: 0.9rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-message i {
+    color: #f72585;
+}
+
+.testimonials {
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+    background: rgba(67, 97, 238, 0.05);
+    border-radius: var(--radius);
+    position: relative;
+}
+
+.testimonials i.fa-quote-left {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    color: rgba(67, 97, 238, 0.2);
+    font-size: 1.2rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mejorar accesibilidad para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #121212 85%, rgba(67,97,238,0.05) 100%);
+        color: #f8f9fa;
+    }
+    
+    .container {
+        background: rgba(30, 30, 30, 0.98);
+        color: #f8f9fa;
+    }
+    
+    .input-group {
+        background: rgba(40, 40, 40, 0.8);
+        border-color: rgba(255,255,255,0.1);
+    }
+    
+    .input-group input,
+    .input-group select {
+        color: #f8f9fa;
+    }
+    
+    .hero p {
+        color: rgba(248, 249, 250, 0.85);
+    }
+}
 }
