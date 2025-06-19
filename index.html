@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combomedia | Transformación Educativa Digital</title>
+    <meta name="description" content="Únete a nuestra comunidad educativa tecnológica y accede a cursos innovadores 100% en línea">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+</head>
+<body>
+    <div class="wave-bg"></div>
+    
+    <main class="container">
+        <div class="logo">
+            <span class="logo-icon">🌐</span>
+            <span class="logo-text">combomedia</span>
+        </div>
+        
+        <section class="hero">
+            <h1>Revoluciona tu <span class="highlight">educación digital</span></h1>
+            <p>Regístrate para acceso prioritario a nuestros cursos en tecnología y educación innovadora</p>
+        </section>
+        
+        <form id="contact-form" autocomplete="off">
+            <div class="input-group">
+                <i class="fas fa-user-graduate"></i>
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-envelope-open-text"></i>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-brain"></i>
+                <select name="interes" required>
+                    <option value="">Área de interés...</option>
+                    <option>Inteligencia Artificial</option>
+                    <option>Desarrollo Web Avanzado</option>
+                    <option>Ciencia de Datos</option>
+                    <option>Educación Tecnológica</option>
+                    <option>Marketing Digital</option>
+                </select>
+                <i class="fas fa-chevron-down select-arrow"></i>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-graduation-cap"></i>
+                <select name="nivel" required>
+                    <option value="">Tu nivel actual...</option>
+                    <option>Principiante</option>
+                    <option>Intermedio</option>
+                    <option>Avanzado</option>
+                    <option>Profesional</option>
+                </select>
+                <i class="fas fa-chevron-down select-arrow"></i>
+            </div>
+            
+            <button type="submit" id="submit-btn">
+                <span>Unirme a la comunidad</span>
+                <i class="fas fa-rocket"></i>
+            </button>
+        </form>
+        
+        <div class="social-proof">
+            <p><i class="fas fa-users"></i> <strong>+5,000</strong> profesionales ya transformaron su educación con nosotros</p>
+        </div>
+    </main>
+    
+    <script>
+        // Configuración para Google Sheets
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyLJUVeh5dH3upE84FWZB5l5L6rGGJ2uqsfhddba8Qqbv_CwVHCsOhFYg4atilcUAOp/exec';
+        const form = document.getElementById('contact-form');
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            
+            // Animación de carga
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Procesando...';
+            submitBtn.disabled = true;
+            
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new FormData(form)
+            })
+            .then(response => {
+                // Animación de éxito
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> ¡Registro exitoso!';
+                submitBtn.style.background = '#4BB543';
+                
+                // Resetear después de 3 segundos
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.innerHTML = '<span>Unirme a la comunidad</span><i class="fas fa-rocket"></i>';
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            })
+            .catch(error => {
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error, intenta nuevamente';
+                submitBtn.style.background = '#FF3333';
+                console.error('Error!', error.message);
+            });
+        });
+    </script>
+</body>
+</html>
