@@ -980,8 +980,8 @@
                 return;
             }
             
-            // URL de tu Google Apps Script
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzXDELaSsHDjv8j14XqOG7pavUzk0KgQdKoJkvF60kSRjBWw6OeSb0Gudyv8vjv02ae/exec';
+            // URL de tu Google Apps Script - ACTUALIZADA
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzf33O-_tfuY2TYhCtyZwVU-isLkFlTC9bxwuex24Rmnjy_gr5MrBmI6c8bFJyiuTCaWA/exec';
             
             // Mostrar estado de carga
             const submitBtn = document.querySelector('.submit-btn');
@@ -999,7 +999,7 @@
             .then(response => {
                 // Verificar si la respuesta es OK (status 200)
                 if (!response.ok) {
-                    throw new Error('La red respondió con un error');
+                    throw new Error('La red respondió con un error: ' + response.status);
                 }
                 return response.json();
             })
