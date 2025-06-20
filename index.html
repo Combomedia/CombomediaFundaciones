@@ -180,6 +180,7 @@
             line-height: 1.2;
             margin-bottom: 20px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
@@ -291,6 +292,7 @@
             font-weight: 800;
             margin-bottom: 20px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
@@ -964,61 +966,60 @@
             }
         });
         
-        <script>
-  // Form submission to Google Apps Script
-  document.getElementById('registration-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
-    
-    // Validar los datos antes de enviar
-    if (!data.name || !data.email || !data.interest) {
-      alert('Por favor, completa todos los campos obligatorios.');
-      return;
-    }
-    
-    // URL de tu Google Apps Script
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxGlJ9-bmGd94P6A4_zEzu9-Qu26ve_YYgDbEhxA8KrlqpvaHusgn3vHSHGsuP1OzyB/exec';
-    
-    // Mostrar estado de carga
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando...';
-    
-    // Enviar datos a Google Apps Script
-    fetch(scriptURL, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())  // Parsear la respuesta como JSON
-    .then(responseData => {
-      if (responseData.result === 'success') {
-        // Mostrar modal de confirmación
-        openModal(data.name, data.email);
-        // Resetear formulario
-        this.reset();
-      } else {
-        throw new Error(responseData.error || 'Error en la respuesta del servidor');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert(`Hubo un error al enviar el formulario: ${error.message}`);
-    })
-    .finally(() => {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Registrarme Ahora';
-    });
-  });
-</script>
+        // Form submission to Google Apps Script
+        document.getElementById('registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Validar los datos antes de enviar
+            if (!data.name || !data.email || !data.interest) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+            
+            // URL de tu Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzXDELaSsHDjv8j14XqOG7pavUzk0KgQdKoJkvF60kSRjBWw6OeSb0Gudyv8vjv02ae/exec';
+            
+            // Mostrar estado de carga
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            // Enviar datos a Google Apps Script
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                // Verificar si la respuesta es OK (status 200)
+                if (!response.ok) {
+                    throw new Error('La red respondió con un error');
+                }
+                return response.json();
+            })
+            .then(responseData => {
+                if (responseData.result === 'success') {
+                    // Mostrar modal de confirmación
+                    openModal(data.name, data.email);
+                    // Resetear formulario
+                    this.reset();
+                } else {
+                    throw new Error(responseData.error || 'Error en la respuesta del servidor');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(`Hubo un error al enviar el formulario: ${error.message}`);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Registrarme Ahora';
             });
         });
         
