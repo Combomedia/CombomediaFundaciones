@@ -970,39 +970,46 @@
     document.getElementById('registration-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
+        // Obtener datos del formulario
         const formData = new FormData(this);
         const data = Object.fromEntries(formData.entries());
         
-        // Validar los datos antes de enviar
+        // Validar campos obligatorios
         if (!data.name || !data.email || !data.interest) {
             alert('Por favor, completa todos los campos obligatorios.');
             return;
         }
         
-        // URL actualizada de Google Apps Script
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxGGLFQejeG76U6Ysab3GVt3RZiw08PSsa3hOwJNKNE2UHh49UP2uOXUszHwrzG5b-bRg/exec';
+        // URL de Google Apps Script (usa la nueva URL de despliegue)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx2-EVbwCjtcyukHsK6EFSPDEIiZF0pvGtdf4jai2iIzQfYFa88hP9T1v5FS6iWNJbPNQ/exec';
         
         // Mostrar estado de carga
         const submitBtn = document.querySelector('.submit-btn');
         submitBtn.disabled = true;
         submitBtn.textContent = 'Enviando...';
         
-        // Solución CORS alternativa
-        const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+        // Enviar como FormData tradicional (evita problemas CORS)
+        const formPayload = new FormData();
+        for (const key in data) {
+            formPayload.append(key, data[key]);
+        }
         
-        fetch(corsProxy + scriptURL, {
+        fetch(scriptURL, {
             method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            }
+            body: formPayload,
+            redirect: 'follow' // Importante para Google Apps Script
         })
         .then(response => {
-            if (!response.ok) throw new Error(`Error ${response.status}`);
-            return response.json();
+            // Google Apps Script devuelve redirecciones
+            if (response.redirected) {
+                return fetch(response.url, {
+                    method: 'POST',
+                    body: formPayload
+                });
+            }
+            return response;
         })
+        .then(response => response.json())
         .then(responseData => {
             if (responseData.result === 'success') {
                 openModal(data.name, data.email);
@@ -1013,7 +1020,7 @@
         })
         .catch(error => {
             console.error('Error:', error);
-            alert(`Error al enviar: ${error.message}`);
+            alert(`Error al enviar el formulario: ${error.message}`);
         })
         .finally(() => {
             submitBtn.disabled = false;
