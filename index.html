@@ -1041,7 +1041,6 @@
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Cursos</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Instructores</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Precios</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
                     </ul>
                 </div>
                 
@@ -1061,7 +1060,7 @@
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> Av. Innovación 123, Ciudad Tecnológica</a></li>
                         <li><a href="mailto:info@combomediaplatform.com"><i class="fas fa-envelope"></i> info@combomediaplatform.com</a></li>
-                        <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 (234) 567-890</a></li>
+                        <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +58 412 3456789</a></li>
                         <li><a href="#"><i class="fas fa-clock"></i> Lunes-Viernes: 9AM - 6PM</a></li>
                     </ul>
                 </div>
@@ -1146,14 +1145,13 @@ document.getElementById('registration-form').addEventListener('submit', function
     
     // Validar estructura de teléfono
     const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(data.phone)) {
-        alert('El teléfono debe tener 10 dígitos numéricos');
+    if (!phoneRegex.test(data.phone)) {;
         document.getElementById('phone').focus();
         return;
     }
     
     // URL de Google Apps Script
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbw4xtwgZpBWb7JwOUu0DDs0FhObR-5on-_bB3cYkJynVNuqYrcw143NgolYw4pFsraigQ/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx2-EVbwCjtcyukHsK6EFSPDEIiZF0pvGtdf4jai2iIzQfYFa88hP9T1v5FS6iWNJbPNQ/exec';
     
     // Mostrar estado de carga
     const submitBtn = document.querySelector('.submit-btn');
@@ -1180,10 +1178,6 @@ document.getElementById('registration-form').addEventListener('submit', function
     .catch(error => {
         console.error('Error:', error);
         alert(`Error al enviar el formulario: ${error.message}`);
-    })
-    .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Registrarme Ahora';
     });
 });
         
