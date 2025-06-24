@@ -835,7 +835,7 @@
 <script>
     // Datos para campos dinámicos
     const interestOptions = {
-        "Cursos": ["Desarrollo web", "Ciencia de datos", "Diseño UX/UI", "Marketing digital", "Inteligencia artificial", "Otro"],
+        "Cursos": ["Desarrollo web", "Ciencia de datos", "Diseño UX/UI", "Marketing digital", "Inteligencia artificial"],
         "Comunidad": ["Comuna", "Fundación", "Comité"],
         "Fundación": ["Misión Ribas", "Fundación Causa Campesina", "Observatorio Popular de medios"]
     };
@@ -944,14 +944,7 @@
     const maxDate = new Date();
     maxDate.setFullYear(today.getFullYear() - 18);
     document.getElementById('birthdate').max = maxDate.toISOString().split('T')[0];
-</script>                    <div class="checkbox-group">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Registrarme Ahora</button>
-                </form>
-            </div>
+</script>                   
         </div>
     </section>
 
@@ -1151,7 +1144,7 @@ document.getElementById('registration-form').addEventListener('submit', function
     }
     
     // URL de Google Apps Script
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx2-EVbwCjtcyukHsK6EFSPDEIiZF0pvGtdf4jai2iIzQfYFa88hP9T1v5FS6iWNJbPNQ/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzQWPCRnp7pcBs_t9waMDGSFDNE_Ddut-xCWIeUW_wm2kDQcO8tFwjU9xLjcZzfqzf9_Q/exec';
     
     // Mostrar estado de carga
     const submitBtn = document.querySelector('.submit-btn');
