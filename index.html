@@ -400,6 +400,21 @@
             box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
         }
         
+        .phone-input-container {
+            display: flex;
+        }
+        
+        .country-code {
+            width: 70px;
+            margin-right: 10px;
+            text-align: center;
+            background: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
         /* Features */
         .features {
             padding: 100px 0;
@@ -740,210 +755,102 @@
 
     <!-- Form Section -->
     <section class="form-section" id="contacto">
-    <div class="container">
-        <div class="section-header">
-            <h2>Únete a nuestra comunidad</h2>
-            <p>Regístrate ahora para acceder a contenido exclusivo, descuentos especiales y transformar tu educación con tecnología innovadora.</p>
-        </div>
-        
-        <div class="form-container">
-            <form id="registration-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cedula">Cédula*</label>
-                        <input type="text" id="cedula" name="cedula" class="form-control" placeholder="Tu número de cédula" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="name">Nombre Completo*</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico*</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Teléfono*</label>
-                        <div style="display: flex;">
-                            <input type="text" id="country-code" value="+58" readonly 
-                                style="width: 70px; margin-right: 10px; text-align: center; background: #e9ecef; border: 1px solid #ced4da; border-radius: 10px; padding: 15px;">
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="4123456789" pattern="[0-9]{10}" title="10 dígitos sin espacios" required>
+        <div class="container">
+            <div class="section-header">
+                <h2>Únete a nuestra comunidad</h2>
+                <p>Regístrate ahora para acceder a contenido exclusivo, descuentos especiales y transformar tu educación con tecnología innovadora.</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cedula">Cédula*</label>
+                            <input type="text" id="cedula" name="cedula" class="form-control" placeholder="Tu número de cédula" required>
                         </div>
-                        <small style="display: block; margin-top: 5px; color: #64748b;">Formato: 4123456789</small>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="birthdate">Fecha de Nacimiento*</label>
-                        <input type="date" id="birthdate" name="birthdate" class="form-control" required>
+                        
+                        <div class="form-group">
+                            <label for="name">Nombre Completo*</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
+                        </div>
                     </div>
                     
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico*</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono*</label>
+                            <div class="phone-input-container">
+                                <input type="text" id="country-code" value="+58" readonly class="country-code">
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="4123456789" pattern="[0-9]{10}" title="10 dígitos sin espacios" required>
+                            </div>
+                            <small style="display: block; margin-top: 5px; color: #64748b;">Formato: 4123456789 (10 dígitos)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthdate">Fecha de Nacimiento*</label>
+                            <input type="date" id="birthdate" name="birthdate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gender">Sexo*</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option value="" disabled selected>Selecciona tu sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Campos dinámicos de interés -->
                     <div class="form-group">
-                        <label for="gender">Sexo*</label>
-                        <select id="gender" name="gender" class="form-control" required>
-                            <option value="" disabled selected>Selecciona tu sexo</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
+                        <label for="interest_type">Tipo de Interés*</label>
+                        <select id="interest_type" name="interest_type" class="form-control" required>
+                            <option value="" disabled selected>Selecciona el tipo de interés</option>
+                            <option value="Cursos">Cursos</option>
+                            <option value="Comunidad">Comunidad</option>
+                            <option value="Fundación">Fundación</option>
                         </select>
                     </div>
-                </div>
-                
-                <!-- Campos dinámicos de interés -->
-                <div class="form-group">
-                    <label for="interest_type">Tipo de Interés*</label>
-                    <select id="interest_type" name="interest_type" class="form-control" required onchange="loadInterestSubtypes()">
-                        <option value="" disabled selected>Selecciona el tipo de interés</option>
-                        <option value="Cursos">Cursos</option>
-                        <option value="Comunidad">Comunidad</option>
-                        <option value="Fundación">Fundación</option>
-                    </select>
-                </div>
-                
-                <div class="form-group" id="subtype-container" style="display: none;">
-                    <label id="subtype-label">Subcategoría*</label>
-                    <select id="interest_subtype" name="interest_subtype" class="form-control" required></select>
-                </div>
-                
-                <div class="form-group" id="residence-container" style="display: none;">
-                    <label for="residence">Residencia*</label>
-                    <select id="residence" name="residence" class="form-control" required onchange="loadApartments()"></select>
-                </div>
-                
-                <div class="form-group" id="apartment-container" style="display: none;">
-                    <label for="apartment">Apartamento*</label>
-                    <select id="apartment" name="apartment" class="form-control" required></select>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
-                </div>
-                
-                <button type="submit" class="submit-btn">Registrarme Ahora</button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- Agregar este script después del formulario -->
-<script>
-    // Datos para campos dinámicos
-    const interestOptions = {
-        "Cursos": ["Desarrollo web", "Ciencia de datos", "Diseño UX/UI", "Marketing digital", "Inteligencia artificial"],
-        "Comunidad": ["Comuna", "Fundación", "Comité"],
-        "Fundación": ["Misión Ribas", "Fundación Causa Campesina", "Observatorio Popular de medios"]
-    };
-
-    const residences = ["Parque Central", "San Martin", "Mohedano", "Anauco", "Tajama", "Catuche", "Caroata", "Tacagua"];
-    
-    const apartments = [
-        "01A", "01B", "01C", "01D", "01E", "01F", "01G", "01H", "01J", "01K", "01L", "01M", "01N", "01P", "01Q", "01R", "01S", "01T", "01U", "01V",
-        "02A", "02B", "02C", "02D", "02E", "02F", "02G", "02H", "02J", "02K", "02L", "02M", "02N", "02P", "02Q", "02R", "02S", "02T", "02U", "02V",
-        "03A", "03B", "03C", "03D", "03E", "03F", "03G", "03H", "03J", "03K", "03L", "03M", "03N",
-        "04A", "04B", "04C", "04D", "04E", "04F", "04G", "04H", "04J", "04K", "04L", "04M", "04N",
-        "05A", "05B", "05C", "05D", "05E", "05F", "05G", "05H", "05J", "05K", "05L", "05M", "05N",
-        "06A", "06B", "06C", "06D", "06E", "06F", "06G", "06H", "06J", "06K", "06L", "06M", "06N", "06P", "06Q",
-        "07A", "07B", "07C", "07D", "07E", "07F", "07G", "07H", "07J", "07K", "07L", "07M", "07N", "07P", "07Q",
-        "08A", "08B", "08C", "08D", "08E", "08F", "08G", "08H", "08J", "08K", "08L", "08M", "08N", "08P", "08Q",
-        "09A", "09B", "09C", "09D", "09E", "09F", "09G", "09H", "09J", "09K", "09L", "09M", "09N", "09P", "09Q",
-        "10A", "10B", "10C", "10D", "10E", "10F", "10G", "10H", "10J", "10K", "10L", "10M", "10N", "10P", "10Q",
-        "11A", "11B", "11C", "11D", "11E", "11F", "11G", "11H", "11J", "11K", "11L", "11M", "11N", "11P", "11Q",
-        "12A", "12B", "12C", "12D", "12E", "12F", "12G", "12H", "12J", "12K", "12L", "12M", "12N", "12P", "12Q",
-        "13A", "13B", "13C", "13D", "13E", "13F", "13G", "13H", "13J", "13K", "13L", "13M", "13N", "13P", "13Q",
-        "14A", "14B", "14C", "14D", "14E", "14F", "14G", "14H", "14J", "14K", "14L", "14M", "14N", "14P", "14Q",
-        "15A", "15B", "15C", "15D", "15E", "15F", "15G", "15H", "15J", "15K", "15L", "15M", "15N", "15P", "15Q",
-        "16A", "16B", "16C", "16D", "16E", "16F", "16G", "16H", "16J", "16K", "16L", "16M", "16N", "16P", "16Q",
-        "17A", "17B", "17C", "17D", "17E", "17F", "17G", "17H", "17J", "17K", "17L", "17M", "17N", "17P", "17Q",
-        "18A", "18B", "18C", "18D", "18E", "18F", "18G", "18H", "18J", "18K", "18L", "18M", "18N", "18P", "18Q",
-        "19A", "19B", "19C", "19D", "19E", "19F", "19G", "19H", "19J", "19K", "19L", "19M", "19N", "19P", "19Q",
-        "OF101", "OF102", "OF103", "OF104", "OF105", "OF106", "OF107", "OF108", "OF109", "OF110", "OF111", "OF112", "OF113", "OF114", "OF115", "OF116", "OF117", "OF118", "OF119", "OF120",
-        "OF201", "OF202", "OF203", "OF204", "OF205", "OF206", "OF207", "OF208", "OF209", "OF210", "OF211", "OF212", "OF213", "OF214", "OF215", "OF216", "OF217", "OF218", "OF219", "OF220",
-        "PH"
-    ];
-
-    function loadInterestSubtypes() {
-        const interestType = document.getElementById('interest_type').value;
-        const subtypeContainer = document.getElementById('subtype-container');
-        const residenceContainer = document.getElementById('residence-container');
-        const apartmentContainer = document.getElementById('apartment-container');
-        const subtypeSelect = document.getElementById('interest_subtype');
-        
-        // Reset y ocultar contenedores
-        subtypeSelect.innerHTML = '';
-        residenceContainer.style.display = 'none';
-        apartmentContainer.style.display = 'none';
-        
-        if (interestType) {
-            // Mostrar contenedor de subtipo
-            subtypeContainer.style.display = 'block';
-            document.getElementById('subtype-label').textContent = interestType === 'Comunidad' ? 'Tipo de Comunidad*' : `${interestType}*`;
-            
-            // Cargar opciones
-            interestOptions[interestType].forEach(option => {
-                const opt = document.createElement('option');
-                opt.value = option;
-                opt.textContent = option;
-                subtypeSelect.appendChild(opt);
-            });
-        } else {
-            subtypeContainer.style.display = 'none';
-        }
-    }
-
-    function loadResidences() {
-        const residenceSelect = document.getElementById('residence');
-        residenceSelect.innerHTML = '';
-        
-        residences.forEach(residence => {
-            const opt = document.createElement('option');
-            opt.value = residence;
-            opt.textContent = residence;
-            residenceSelect.appendChild(opt);
-        });
-    }
-
-    function loadApartments() {
-        const apartmentSelect = document.getElementById('apartment');
-        apartmentSelect.innerHTML = '';
-        
-        apartments.forEach(apartment => {
-            const opt = document.createElement('option');
-            opt.value = apartment;
-            opt.textContent = apartment;
-            apartmentSelect.appendChild(opt);
-        });
-        
-        document.getElementById('apartment-container').style.display = 'block';
-    }
-
-    // Inicializar cargadores
-    document.getElementById('interest_subtype').addEventListener('change', function() {
-        const interestType = document.getElementById('interest_type').value;
-        const subtype = this.value;
-        const residenceContainer = document.getElementById('residence-container');
-        const apartmentContainer = document.getElementById('apartment-container');
-        
-        if (interestType === 'Comunidad' && subtype === 'Comuna') {
-            loadResidences();
-            residenceContainer.style.display = 'block';
-            apartmentContainer.style.display = 'none';
-        } else {
-            residenceContainer.style.display = 'none';
-            apartmentContainer.style.display = 'none';
-        }
-    });
-
-    // Inicializar fecha máxima (18 años atrás)
-    const today = new Date();
-    const maxDate = new Date();
-    maxDate.setFullYear(today.getFullYear() - 18);
-    document.getElementById('birthdate').max = maxDate.toISOString().split('T')[0];
-</script>                   
+                    
+                    <div class="form-group" id="subtype-container" style="display: none;">
+                        <label id="subtype-label">Subcategoría*</label>
+                        <select id="interest_subtype" name="interest_subtype" class="form-control" required></select>
+                    </div>
+                    
+                    <!-- Campos para Comuna -->
+                    <div class="form-group" id="comuna-container" style="display: none;">
+                        <label for="comuna">Comuna*</label>
+                        <select id="comuna" name="comuna" class="form-control" required></select>
+                    </div>
+                    
+                    <div class="form-group" id="residence-container" style="display: none;">
+                        <label for="residence">Residencia*</label>
+                        <select id="residence" name="residence" class="form-control" required>
+                            <option value="" disabled selected>Selecciona residencia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="apartment-container" style="display: none;">
+                        <label for="apartment">Apartamento*</label>
+                        <select id="apartment" name="apartment" class="form-control" required>
+                            <option value="" disabled selected>Selecciona apartamento</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Registrarme Ahora</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -1051,7 +958,7 @@
                     <h3>Contacto</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> Av. Innovación 123, Ciudad Tecnológica</a></li>
-                        <li><a href="mailto:info@combomediaplatform.com"><i class="fas fa-envelope"></i> info@combomediaplatform.com</a></li>
+                        <li><a href="mailto:info@combomediaplatform.com"><i class="fas fa-envelope"></i> info@combomediaplatform</a></li>
                         <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +58 412 3456789</a></li>
                         <li><a href="#"><i class="fas fa-clock"></i> Lunes-Viernes: 9AM - 6PM</a></li>
                     </ul>
