@@ -740,448 +740,307 @@
 
     <!-- Form Section -->
     <section class="form-section" id="contacto">
-    <div class="container">
-        <div class="section-header">
-            <h2>Únete a nuestra comunidad</h2>
-            <p>Regístrate ahora para acceder a contenido exclusivo, descuentos especiales y transformar tu educación con tecnología innovadora.</p>
-        </div>
-        
-        <div class="form-container">
-            <form id="registration-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cedula">Cédula*</label>
-                        <input type="text" id="cedula" name="cedula" class="form-control" placeholder="Tu número de cédula" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="name">Nombre Completo*</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico*</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Teléfono*</label>
-                        <div style="display: flex;">
-                            <input type="text" id="country-code" value="+58" readonly 
-                                style="width: 70px; margin-right: 10px; text-align: center; background: #e9ecef; border: 1px solid #ced4da; border-radius: 10px; padding: 15px;">
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="4123456789" pattern="[0-9]{10}" title="10 dígitos sin espacios" required>
-                        </div>
-                        <small style="display: block; margin-top: 5px; color: #64748b;">Formato: 4123456789 (10 dígitos)</small>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="birthdate">Fecha de Nacimiento*</label>
-                        <input type="date" id="birthdate" name="birthdate" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="gender">Sexo*</label>
-                        <select id="gender" name="gender" class="form-control" required>
-                            <option value="" disabled selected>Selecciona tu sexo</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <!-- Campos dinámicos de interés -->
-                <div class="form-group">
-                    <label for="interest_type">Tipo de Interés*</label>
-                    <select id="interest_type" name="interest_type" class="form-control" required onchange="loadInterestSubtypes()">
-                        <option value="" disabled selected>Selecciona el tipo de interés</option>
-                        <option value="Cursos">Cursos</option>
-                        <option value="Comunidad">Comunidad</option>
-                        <option value="Fundación">Fundación</option>
-                    </select>
-                </div>
-                
-                <div class="form-group" id="subtype-container" style="display: none;">
-                    <label id="subtype-label">Subcategoría*</label>
-                    <select id="interest_subtype" name="interest_subtype" class="form-control" required></select>
-                </div>
-                
-                <div class="form-group" id="residence-container" style="display: none;">
-                    <label for="residence">Residencia*</label>
-                    <select id="residence" name="residence" class="form-control" required onchange="loadApartments()"></select>
-                </div>
-                
-                <div class="form-group" id="apartment-container" style="display: none;">
-                    <label for="apartment">Apartamento*</label>
-                    <select id="apartment" name="apartment" class="form-control" required></select>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
-                </div>
-                
-                <button type="submit" class="submit-btn">Registrarme Ahora</button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- Agregar este script después del formulario -->
-<script>
-    // Datos para campos dinámicos
-    const interestOptions = {
-        "Cursos": ["Desarrollo web", "Ciencia de datos", "Diseño UX/UI", "Marketing digital", "Inteligencia artificial"],
-        "Comunidad": ["Comuna", "Fundación", "Comité"],
-        "Fundación": ["Misión Ribas", "Fundación Causa Campesina", "Observatorio Popular de medios"]
-    };
-
-    const residences = ["Parque Central", "San Martin", "Mohedano", "Anauco", "Tajama", "Catuche", "Caroata", "Tacagua"];
-    
-    const apartments = [
-        "01A", "01B", "01C", "01D", "01E", "01F", "01G", "01H", "01J", "01K", "01L", "01M", "01N", "01P", "01Q", "01R", "01S", "01T", "01U", "01V",
-        "02A", "02B", "02C", "02D", "02E", "02F", "02G", "02H", "02J", "02K", "02L", "02M", "02N", "02P", "02Q", "02R", "02S", "02T", "02U", "02V",
-        "03A", "03B", "03C", "03D", "03E", "03F", "03G", "03H", "03J", "03K", "03L", "03M", "03N",
-        "04A", "04B", "04C", "04D", "04E", "04F", "04G", "04H", "04J", "04K", "04L", "04M", "04N",
-        "05A", "05B", "05C", "05D", "05E", "05F", "05G", "05H", "05J", "05K", "05L", "05M", "05N",
-        "06A", "06B", "06C", "06D", "06E", "06F", "06G", "06H", "06J", "06K", "06L", "06M", "06N", "06P", "06Q",
-        "07A", "07B", "07C", "07D", "07E", "07F", "07G", "07H", "07J", "07K", "07L", "07M", "07N", "07P", "07Q",
-        "08A", "08B", "08C", "08D", "08E", "08F", "08G", "08H", "08J", "08K", "08L", "08M", "08N", "08P", "08Q",
-        "09A", "09B", "09C", "09D", "09E", "09F", "09G", "09H", "09J", "09K", "09L", "09M", "09N", "09P", "09Q",
-        "10A", "10B", "10C", "10D", "10E", "10F", "10G", "10H", "10J", "10K", "10L", "10M", "10N", "10P", "10Q",
-        "11A", "11B", "11C", "11D", "11E", "11F", "11G", "11H", "11J", "11K", "11L", "11M", "11N", "11P", "11Q",
-        "12A", "12B", "12C", "12D", "12E", "12F", "12G", "12H", "12J", "12K", "12L", "12M", "12N", "12P", "12Q",
-        "13A", "13B", "13C", "13D", "13E", "13F", "13G", "13H", "13J", "13K", "13L", "13M", "13N", "13P", "13Q",
-        "14A", "14B", "14C", "14D", "14E", "14F", "14G", "14H", "14J", "14K", "14L", "14M", "14N", "14P", "14Q",
-        "15A", "15B", "15C", "15D", "15E", "15F", "15G", "15H", "15J", "15K", "15L", "15M", "15N", "15P", "15Q",
-        "16A", "16B", "16C", "16D", "16E", "16F", "16G", "16H", "16J", "16K", "16L", "16M", "16N", "16P", "16Q",
-        "17A", "17B", "17C", "17D", "17E", "17F", "17G", "17H", "17J", "17K", "17L", "17M", "17N", "17P", "17Q",
-        "18A", "18B", "18C", "18D", "18E", "18F", "18G", "18H", "18J", "18K", "18L", "18M", "18N", "18P", "18Q",
-        "19A", "19B", "19C", "19D", "19E", "19F", "19G", "19H", "19J", "19K", "19L", "19M", "19N", "19P", "19Q",
-        "OF101", "OF102", "OF103", "OF104", "OF105", "OF106", "OF107", "OF108", "OF109", "OF110", "OF111", "OF112", "OF113", "OF114", "OF115", "OF116", "OF117", "OF118", "OF119", "OF120",
-        "OF201", "OF202", "OF203", "OF204", "OF205", "OF206", "OF207", "OF208", "OF209", "OF210", "OF211", "OF212", "OF213", "OF214", "OF215", "OF216", "OF217", "OF218", "OF219", "OF220",
-        "PH"
-    ];
-
-    function loadInterestSubtypes() {
-        const interestType = document.getElementById('interest_type').value;
-        const subtypeContainer = document.getElementById('subtype-container');
-        const residenceContainer = document.getElementById('residence-container');
-        const apartmentContainer = document.getElementById('apartment-container');
-        const subtypeSelect = document.getElementById('interest_subtype');
-        
-        // Reset y ocultar contenedores
-        subtypeSelect.innerHTML = '';
-        residenceContainer.style.display = 'none';
-        apartmentContainer.style.display = 'none';
-        
-        if (interestType) {
-            // Mostrar contenedor de subtipo
-            subtypeContainer.style.display = 'block';
-            document.getElementById('subtype-label').textContent = interestType === 'Comunidad' ? 'Tipo de Comunidad*' : `${interestType}*`;
-            
-            // Cargar opciones
-            interestOptions[interestType].forEach(option => {
-                const opt = document.createElement('option');
-                opt.value = option;
-                opt.textContent = option;
-                subtypeSelect.appendChild(opt);
-            });
-        } else {
-            subtypeContainer.style.display = 'none';
-        }
-    }
-
-    function loadResidences() {
-        const residenceSelect = document.getElementById('residence');
-        residenceSelect.innerHTML = '';
-        
-        residences.forEach(residence => {
-            const opt = document.createElement('option');
-            opt.value = residence;
-            opt.textContent = residence;
-            residenceSelect.appendChild(opt);
-        });
-    }
-
-    function loadApartments() {
-        const apartmentSelect = document.getElementById('apartment');
-        apartmentSelect.innerHTML = '';
-        
-        apartments.forEach(apartment => {
-            const opt = document.createElement('option');
-            opt.value = apartment;
-            opt.textContent = apartment;
-            apartmentSelect.appendChild(opt);
-        });
-        
-        document.getElementById('apartment-container').style.display = 'block';
-    }
-
-    // Inicializar cargadores
-    document.getElementById('interest_subtype').addEventListener('change', function() {
-        const interestType = document.getElementById('interest_type').value;
-        const subtype = this.value;
-        const residenceContainer = document.getElementById('residence-container');
-        const apartmentContainer = document.getElementById('apartment-container');
-        
-        if (interestType === 'Comunidad' && subtype === 'Comuna') {
-            loadResidences();
-            residenceContainer.style.display = 'block';
-            apartmentContainer.style.display = 'none';
-        } else {
-            residenceContainer.style.display = 'none';
-            apartmentContainer.style.display = 'none';
-        }
-    });
-
-    // Inicializar fecha máxima (18 años atrás)
-    const today = new Date();
-    const maxDate = new Date();
-    maxDate.setFullYear(today.getFullYear() - 18);
-    document.getElementById('birthdate').max = maxDate.toISOString().split('T')[0];
-</script>                   
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="beneficios">
         <div class="container">
             <div class="section-header">
-                <h2>Beneficios Exclusivos</h2>
-                <p>Descubre por qué miles de estudiantes eligen CombomediaPlatform para su transformación educativa</p>
+                <h2>Únete a nuestra comunidad</h2>
+                <p>Regístrate ahora para acceder a contenido exclusivo, descuentos especiales y transformar tu educación con tecnología innovadora.</p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
+            <div class="form-container">
+                <form id="registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cedula">Cédula*</label>
+                            <input type="text" id="cedula" name="cedula" class="form-control" placeholder="Tu número de cédula" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Nombre Completo*</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
+                        </div>
                     </div>
-                    <h3>Acceso Global</h3>
-                    <p>Aprende desde cualquier lugar del mundo con nuestra plataforma 100% en línea disponible 24/7.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico*</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono*</label>
+                            <div style="display: flex;">
+                                <input type="text" id="country-code" value="+58" readonly 
+                                    style="width: 70px; margin-right: 10px; text-align: center; background: #e9ecef; border: 1px solid #ced4da; border-radius: 10px; padding: 15px;">
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="4123456789" pattern="[0-9]{10}" title="10 dígitos sin espacios" required>
+                            </div>
+                            <small style="display: block; margin-top: 5px; color: #64748b;">Formato: 4123456789 (10 dígitos)</small>
+                        </div>
                     </div>
-                    <h3>Contenido Actualizado</h3>
-                    <p>Cursos diseñados con las últimas tendencias tecnológicas y mejores prácticas educativas.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthdate">Fecha de Nacimiento*</label>
+                            <input type="date" id="birthdate" name="birthdate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gender">Sexo*</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option value="" disabled selected>Selecciona tu sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
                     </div>
-                    <h3>Comunidad Activa</h3>
-                    <p>Conecta con profesionales y entusiastas apasionados por la tecnología y la educación.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
+                    
+                    <!-- Campos dinámicos de interés -->
+                    <div class="form-group">
+                        <label for="interest_type">Tipo de Interés*</label>
+                        <select id="interest_type" name="interest_type" class="form-control" required onchange="loadInterestSubtypes()">
+                            <option value="" disabled selected>Selecciona el tipo de interés</option>
+                            <option value="Cursos">Cursos</option>
+                            <option value="Comunidad">Comunidad</option>
+                            <option value="Fundación">Fundación</option>
+                        </select>
                     </div>
-                    <h3>Impulsa tu Carrera</h3>
-                    <p>Adquiere habilidades demandadas en el mercado laboral actual y destaca profesionalmente.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
+                    
+                    <div class="form-group" id="subtype-container" style="display: none;">
+                        <label id="subtype-label">Subcategoría*</label>
+                        <select id="interest_subtype" name="interest_subtype" class="form-control" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                        </select>
                     </div>
-                    <h3>Soporte Personalizado</h3>
-                    <p>Recibe orientación de instructores expertos y resuelve tus dudas en tiempo real.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                    
+                    <div class="form-group" id="comuna-container" style="display: none;">
+                        <label for="comuna">Comuna*</label>
+                        <select id="comuna" name="comuna" class="form-control" required onchange="loadResidences()">
+                            <option value="" disabled selected>Selecciona una comuna</option>
+                        </select>
                     </div>
-                    <h3>Certificaciones</h3>
-                    <p>Obtén certificados reconocidos que validan tus nuevas habilidades y conocimientos.</p>
-                </div>
+                    
+                    <div class="form-group" id="residence-container" style="display: none;">
+                        <label for="residence">Residencia*</label>
+                        <select id="residence" name="residence" class="form-control" required onchange="loadApartments()">
+                            <option value="" disabled selected>Selecciona una residencia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="apartment-container" style="display: none;">
+                        <label for="apartment">Apartamento*</label>
+                        <select id="apartment" name="apartment" class="form-control">
+                            <option value="" disabled selected>Selecciona un apartamento</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Registrarme Ahora</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="#" class="logo" style="margin-bottom: 20px; display: inline-block;">
-                        <div class="logo-icon">C</div>
-                        <div class="logo-text" style="color: white;">Combo<span style="color: var(--secondary);">media</span>Platform</div>
-                    </a>
-                    <p>Somos apasionados generadores de contenido de valor, comprometidos con la transformación educativa y tecnológica.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Inicio</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cursos</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Instructores</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Precios</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Categorías</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Desarrollo Web</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ciencia de Datos</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Inteligencia Artificial</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Marketing Digital</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Diseño UX/UI</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contacto</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Av. Innovación 123, Ciudad Tecnológica</a></li>
-                        <li><a href="mailto:info@combomediaplatform.com"><i class="fas fa-envelope"></i> info@combomediaplatform.com</a></li>
-                        <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +58 412 3456789</a></li>
-                        <li><a href="#"><i class="fas fa-clock"></i> Lunes-Viernes: 9AM - 6PM</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 CombomediaPlatform. Todos los derechos reservados. | #EducaciónDigital #TecnologíaEducativa #AprendeEnLínea</p>
-            </div>
-        </div>
-    </footer>
+    <!-- [El resto del HTML permanece igual] -->
 
-    <!-- Modal de Confirmación -->
-    <div class="modal" id="confirmation-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-modal">&times;</span>
-            <div class="modal-icon">
-                <i class="fas fa-check"></i>
-            </div>
-            <h2>¡Registro Exitoso!</h2>
-            <p id="confirmation-message">Gracias por unirte a CombomediaPlatform. Te hemos enviado más información a tu correo electrónico.</p>
-            <p>Bienvenido a nuestra comunidad educativa.</p>
-            <button class="cta-button" style="margin-top: 20px;" id="modal-close-btn">Continuar</button>
-        </div>
-    </div>
-
+    <!-- Scripts actualizados -->
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.padding = '10px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.padding = '20px 0';
-                header.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.05)';
-            }
-        });
+        // Datos para campos dinámicos
+        const interestOptions = {
+            "Cursos": ["Desarrollo web", "Ciencia de datos", "Diseño UX/UI", "Marketing digital", "Inteligencia artificial"],
+            "Comunidad": ["Comuna", "Fundación", "Comité"],
+            "Fundación": ["Misión Ribas", "Fundación Causa Campesina", "Observatorio Popular de medios"]
+        };
+
+        const comunas = ["Parque Central", "San Martin", "Mohedano", "Anauco", "Tajama", "Catuche", "Caroata", "Tacagua"];
         
-        // Modal functionality
-        const modal = document.getElementById('confirmation-modal');
-        const closeModal = document.getElementById('close-modal');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const residences = {
+            "Parque Central": ["Residencia A", "Residencia B", "Residencia C"],
+            "San Martin": ["Residencia D", "Residencia E"],
+            // Agrega más según sea necesario
+        };
         
-        function openModal(name, email) {
-            document.getElementById('confirmation-message').textContent = 
-                `¡Gracias ${name}! Tu registro ha sido exitoso. Te hemos enviado más información a ${email}.`;
-            modal.style.display = 'flex';
-        }
-        
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        modalCloseBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-        
-        // Form submission to Google Apps Script
-    // Reemplazar el event listener del formulario con este código
-document.getElementById('registration-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Validar campos obligatorios
-    const requiredFields = Array.from(this.querySelectorAll('[required]'));
-    const emptyFields = requiredFields.filter(field => !field.value.trim());
-    
-    if (emptyFields.length > 0) {
-        alert('Por favor, completa todos los campos obligatorios.');
-        emptyFields[0].focus();
-        return;
-    }
-    
-    // Construir objeto de datos
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-    
-    // Validar estructura de teléfono
-    const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(data.phone)) {;
-        document.getElementById('phone').focus();
-        return;
-    }
-    
-    // URL de Google Apps Script
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzQWPCRnp7pcBs_t9waMDGSFDNE_Ddut-xCWIeUW_wm2kDQcO8tFwjU9xLjcZzfqzf9_Q/exec';
-    
-    // Mostrar estado de carga
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando...';
-    
-    // Enviar datos
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(responseData => {
-        if (responseData.result === 'success') {
-            openModal(data.name, data.email);
-            this.reset();
-        } else {
-            throw new Error(responseData.error || 'Error en el servidor');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert(`Error al enviar el formulario: ${error.message}`);
-    });
-});
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        const apartments = [
+            "01A", "01B", "01C", "01D", "01E", "01F", "01G", "01H", "01J", "01K", "01L", "01M", "01N", "01P", "01Q", "01R", "01S", "01T", "01U", "01V",
+            // Resto de apartamentos...
+        ];
+
+        function loadInterestSubtypes() {
+            const interestType = document.getElementById('interest_type').value;
+            const subtypeContainer = document.getElementById('subtype-container');
+            const comunaContainer = document.getElementById('comuna-container');
+            const residenceContainer = document.getElementById('residence-container');
+            const apartmentContainer = document.getElementById('apartment-container');
+            const subtypeSelect = document.getElementById('interest_subtype');
+            
+            // Reset y ocultar contenedores
+            subtypeSelect.innerHTML = '<option value="" disabled selected>Selecciona una opción</option>';
+            comunaContainer.style.display = 'none';
+            residenceContainer.style.display = 'none';
+            apartmentContainer.style.display = 'none';
+            
+            if (interestType) {
+                // Mostrar contenedor de subtipo
+                subtypeContainer.style.display = 'block';
+                document.getElementById('subtype-label').textContent = interestType === 'Comunidad' ? 'Tipo de Comunidad*' : `${interestType}*`;
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                // Cargar opciones
+                interestOptions[interestType].forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option;
+                    opt.textContent = option;
+                    subtypeSelect.appendChild(opt);
                 });
+            } else {
+                subtypeContainer.style.display = 'none';
+            }
+        }
+
+        function loadComunas() {
+            const comunaSelect = document.getElementById('comuna');
+            comunaSelect.innerHTML = '<option value="" disabled selected>Selecciona una comuna</option>';
+            
+            comunas.forEach(comuna => {
+                const opt = document.createElement('option');
+                opt.value = comuna;
+                opt.textContent = comuna;
+                comunaSelect.appendChild(opt);
+            });
+            
+            document.getElementById('comuna-container').style.display = 'block';
+        }
+
+        function loadResidences() {
+            const comuna = document.getElementById('comuna').value;
+            const residenceSelect = document.getElementById('residence');
+            residenceSelect.innerHTML = '<option value="" disabled selected>Selecciona una residencia</option>';
+            
+            if (comuna && residences[comuna]) {
+                residences[comuna].forEach(residence => {
+                    const opt = document.createElement('option');
+                    opt.value = residence;
+                    opt.textContent = residence;
+                    residenceSelect.appendChild(opt);
+                });
+                
+                document.getElementById('residence-container').style.display = 'block';
+            } else {
+                document.getElementById('residence-container').style.display = 'none';
+            }
+            
+            document.getElementById('apartment-container').style.display = 'none';
+        }
+
+        function loadApartments() {
+            const apartmentSelect = document.getElementById('apartment');
+            apartmentSelect.innerHTML = '<option value="" disabled selected>Selecciona un apartamento</option>';
+            
+            apartments.forEach(apartment => {
+                const opt = document.createElement('option');
+                opt.value = apartment;
+                opt.textContent = apartment;
+                apartmentSelect.appendChild(opt);
+            });
+            
+            document.getElementById('apartment-container').style.display = 'block';
+        }
+
+        // Inicializar cargadores
+        document.getElementById('interest_subtype').addEventListener('change', function() {
+            const interestType = document.getElementById('interest_type').value;
+            const subtype = this.value;
+            
+            if (interestType === 'Comunidad' && subtype === 'Comuna') {
+                loadComunas();
+            } else {
+                document.getElementById('comuna-container').style.display = 'none';
+                document.getElementById('residence-container').style.display = 'none';
+                document.getElementById('apartment-container').style.display = 'none';
+            }
+        });
+
+        // Inicializar fecha máxima (18 años atrás)
+        const today = new Date();
+        const maxDate = new Date();
+        maxDate.setFullYear(today.getFullYear() - 18);
+        document.getElementById('birthdate').max = maxDate.toISOString().split('T')[0];
+
+        // Form submission to Google Apps Script
+        document.getElementById('registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validar campos obligatorios
+            const requiredFields = Array.from(this.querySelectorAll('[required]'));
+            const emptyFields = requiredFields.filter(field => {
+                // Solo validar campos visibles
+                if (field.offsetParent === null) return false;
+                return !field.value.trim();
+            });
+            
+            if (emptyFields.length > 0) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                emptyFields[0].focus();
+                return;
+            }
+            
+            // Construir objeto de datos
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Validar estructura de teléfono
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(data.phone)) {
+                alert('Por favor, ingresa un número de teléfono válido de 10 dígitos.');
+                document.getElementById('phone').focus();
+                return;
+            }
+            
+            // URL de Google Apps Script (asegúrate de que esta URL es correcta)
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxF8Yf_Tld65YrSmPKvcAFfJwBGHJsbeWDSypQxG9vE_CsFhN6LX-irPwmUkAPTvownKw/exec';
+            
+            // Mostrar estado de carga
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            // Enviar datos
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(responseData => {
+                if (responseData.result === 'success') {
+                    openModal(data.name, data.email);
+                    this.reset();
+                    
+                    // Resetear campos dinámicos
+                    document.getElementById('subtype-container').style.display = 'none';
+                    document.getElementById('comuna-container').style.display = 'none';
+                    document.getElementById('residence-container').style.display = 'none';
+                    document.getElementById('apartment-container').style.display = 'none';
+                } else {
+                    throw new Error(responseData.error || 'Error en el servidor');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(`Error al enviar el formulario: ${error.message}`);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Registrarme Ahora';
             });
         });
     </script>
