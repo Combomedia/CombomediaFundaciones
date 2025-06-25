@@ -745,215 +745,54 @@
                 <h2>Únete a nuestra comunidad</h2>
                 <p>Regístrate ahora para acceder a contenido exclusivo, descuentos especiales y transformar tu educación con tecnología innovadora.</p>
             </div>
+            
             <div class="form-container">
-    <form id="registration-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="cedula">Cédula*</label>
-                <input type="text" id="cedula" name="cedula" class="form-control" placeholder="Solo números" required pattern="[0-9]+" minlength="6" maxlength="10">
-            </div>
-            
-            <div class="form-group">
-                <label for="name">Nombre Completo*</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
-            </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group">
-                <label for="email">Correo Electrónico*</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone">Teléfono*</label>
-                <div style="display: flex;">
-                    <input type="text" value="+58" style="width: 60px; border-right: none; border-top-right-radius: 0; border-bottom-right-radius: 0;" readonly>
-                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="4121234567" required pattern="[0-9]+" minlength="10" maxlength="10" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group">
-                <label for="birthdate">Fecha de Nacimiento*</label>
-                <input type="date" id="birthdate" name="birthdate" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="sex">Sexo*</label>
-                <select id="sex" name="sex" class="form-control" required>
-                    <option value="" disabled selected>Selecciona tu sexo</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                </select>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="main_interest">Área de Interés Principal*</label>
-            <select id="main_interest" name="main_interest" class="form-control" required>
-                <option value="" disabled selected>Selecciona tu interés principal</option>
-                <option value="Cursos">Cursos</option>
-                <option value="Comunidad">Comunidad</option>
-                <option value="Fundaciones">Fundaciones</option>
-            </select>
-        </div>
-        
-        <!-- Campos dinámicos que aparecerán según selección -->
-        <div id="dynamic-fields-container">
-           document.getElementById('main_interest').addEventListener('change', function() {
-    const container = document.getElementById('dynamic-fields-container');
-    container.innerHTML = ''; // Limpiar campos anteriores
-    
-    const selectedInterest = this.value;
-    
-    if (selectedInterest === 'Cursos') {
-        const div = document.createElement('div');
-        div.className = 'form-group';
-        div.innerHTML = `
-            <label for="course">Curso de Interés*</label>
-            <select id="course" name="course" class="form-control" required>
-                <option value="" disabled selected>Selecciona un curso</option>
-                <option value="Desarrollo web">Desarrollo web</option>
-                <option value="Ciencia e datos">Ciencia e datos</option>
-                <option value="Diseño Ux/Ui">Diseño Ux/Ui</option>
-                <option value="Marketing digital">Marketing digital</option>
-                <option value="Inteligencia artificial">Inteligencia artificial</option>
-            </select>
-        `;
-        container.appendChild(div);
-    } 
-    else if (selectedInterest === 'Comunidad') {
-        const div1 = document.createElement('div');
-        div1.className = 'form-group';
-        div1.innerHTML = `
-            <label for="community">Comunidad*</label>
-            <select id="community" name="community" class="form-control" required>
-                <option value="" disabled selected>Selecciona una comunidad</option>
-                <option value="Comuna">Comuna</option>
-            </select>
-        `;
-        container.appendChild(div1);
-        
-        // Event listener para el campo de comunidad
-        div1.querySelector('select').addEventListener('change', function() {
-            if (this.value === 'Comuna') {
-                const existingComunaField = container.querySelector('#comuna');
-                if (!existingComunaField) {
-                    const div2 = document.createElement('div');
-                    div2.className = 'form-group';
-                    div2.innerHTML = `
-                        <label for="comuna">Comuna*</label>
-                        <select id="comuna" name="comuna" class="form-control" required>
-                            <option value="" disabled selected>Selecciona una comuna</option>
-                            <option value="Parque Central">Parque Central</option>
-                        </select>
-                    `;
-                    container.appendChild(div2);
+                <form id="registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                        </div>
+                    </div>
                     
-                    // Event listener para el campo de comuna
-                    div2.querySelector('select').addEventListener('change', function() {
-                        if (this.value === 'Parque Central') {
-                            const existingResidenciaField = container.querySelector('#residencia');
-                            if (!existingResidenciaField) {
-                                const div3 = document.createElement('div');
-                                div3.className = 'form-group';
-                                div3.innerHTML = `
-                                    <label for="residencia">Residencia*</label>
-                                    <select id="residencia" name="residencia" class="form-control" required>
-                                        <option value="" disabled selected>Selecciona tu residencia</option>
-                                        <option value="Tejar">Tejar</option>
-                                        <option value="San Martin">San Martin</option>
-                                        <option value="Mohedano">Mohedano</option>
-                                        <option value="Anauco">Anauco</option>
-                                        <option value="Tajama">Tajama</option>
-                                        <option value="Catuche">Catuche</option>
-                                        <option value="Caroata">Caroata</option>
-                                        <option value="Tacagua">Tacagua</option>
-                                    </select>
-                                `;
-                                container.appendChild(div3);
-                                
-                                // Event listener para el campo de residencia
-                                div3.querySelector('select').addEventListener('change', function() {
-                                    const existingAptoField = container.querySelector('#apto');
-                                    if (!existingAptoField) {
-                                        const div4 = document.createElement('div');
-                                        div4.className = 'form-group';
-                                        div4.innerHTML = `
-                                            <label for="apto">Apto*</label>
-                                            <select id="apto" name="apto" class="form-control" required>
-                                                <option value="" disabled selected>Selecciona tu apto</option>
-                                                ${generateAptoOptions()}
-                                            </select>
-                                        `;
-                                        container.appendChild(div4);
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }
-            }
-        });
-    } 
-    else if (selectedInterest === 'Fundaciones') {
-        const div = document.createElement('div');
-        div.className = 'form-group';
-        div.innerHTML = `
-            <label for="foundation">Fundación*</label>
-            <select id="foundation" name="foundation" class="form-control" required>
-                <option value="" disabled selected>Selecciona una fundación</option>
-                <option value="Misión Ribas">Misión Ribas</option>
-                <option value="Fundación Causa Campesina">Fundación Causa Campesina</option>
-                <option value="Observatorio Popular de medios">Observatorio Popular de medios</option>
-            </select>
-        `;
-        container.appendChild(div);
-    }
-});
-
-// Función para generar opciones de Apto desde el Excel
-function generateAptoOptions() {
-    // Estos son los valores del Excel, puedes ajustarlos según sea necesario
-    const aptos = [
-        '01A', '01B', '01C', '01D', '01E', '01F', '01G', '01H', '01J', '01K', '01L', '01M', '01N', '01P', '01Q', '01R', '01S', '01T', '01U', '01V',
-        '02A', '02B', '02C', '02D', '02E', '02F', '02G', '02H', '02J', '02K', '02L', '02M', '02N', '02P', '02Q', '02R', '02S', '02T', '02U', '02V',
-        '03A', '03B', '03C', '03D', '03E', '03F', '03G', '03H', '03J', '03K', '03L', '03M', '03N',
-        '04A', '04B', '04C', '04D', '04E', '04F', '04G', '04H', '04J', '04K', '04L', '04M', '04N',
-        '05A', '05B', '05C', '05D', '05E', '05F', '05G', '05H', '05J', '05K', '05L', '05M', '05N',
-        '06A', '06B', '06C', '06D', '06E', '06F', '06G', '06H', '06J', '06K', '06L', '06M', '06N', '06P', '06Q',
-        '07A', '07B', '07C', '07D', '07E', '07F', '07G', '07H', '07J', '07K', '07L', '07M', '07N', '07P', '07Q',
-        '08A', '08B', '08C', '08D', '08E', '08F', '08G', '08H', '08J', '08K', '08L', '08M', '08N', '08P', '08Q',
-        '09A', '09B', '09C', '09D', '09E', '09F', '09G', '09H', '09J', '09K', '09L', '09M', '09N', '09P', '09Q',
-        '10A', '10B', '10C', '10D', '10E', '10F', '10G', '10H', '10J', '10K', '10L', '10M', '10N', '10P', '10Q',
-        '11A', '11B', '11C', '11D', '11E', '11F', '11G', '11H', '11J', '11K', '11L', '11M', '11N', '11P', '11Q',
-        '12A', '12B', '12C', '12D', '12E', '12F', '12G', '12H', '12J', '12K', '12L', '12M', '12N', '12P', '12Q',
-        '13A', '13B', '13C', '13D', '13E', '13F', '13G', '13H', '13J', '13K', '13L', '13M', '13N', '13P', '13Q',
-        '14A', '14B', '14C', '14D', '14E', '14F', '14G', '14H', '14J', '14K', '14L', '14M', '14N', '14P', '14Q',
-        '15A', '15B', '15C', '15D', '15E', '15F', '15G', '15H', '15J', '15K', '15L', '15M', '15N', '15P', '15Q',
-        '16A', '16B', '16C', '16D', '16E', '16F', '16G', '16H', '16J', '16K', '16L', '16M', '16N', '16P', '16Q',
-        '17A', '17B', '17C', '17D', '17E', '17F', '17G', '17H', '17J', '17K', '17L', '17M', '17N', '17P', '17Q',
-        '18A', '18B', '18C', '18D', '18E', '18F', '18G', '18H', '18J', '18K', '18L', '18M', '18N', '18P', '18Q',
-        '19A', '19B', '19C', '19D', '19E', '19F', '19G', '19H', '19J', '19K', '19L', '19M', '19N', '19P', '19Q',
-        'OF101', 'OF102', 'OF103', 'OF104', 'OF105', 'OF106', 'OF107', 'OF108', 'OF109', 'OF110', 'OF111', 'OF112', 'OF113', 'OF114', 'OF115', 'OF116', 'OF117', 'OF118', 'OF119', 'OF120',
-        'OF201', 'OF202', 'OF203', 'OF204', 'OF205', 'OF206', 'OF207', 'OF208', 'OF209', 'OF210', 'OF211', 'OF212', 'OF213', 'OF214', 'OF215', 'OF216', 'OF217', 'OF218', 'OF219', 'OF220',
-        'PH'
-    ];
-    
-    return aptos.map(apto => `<option value="${apto}">${apto}</option>`).join('');
-}
-        </div>
-        
-        <div class="checkbox-group">
-            <input type="checkbox" id="terms" name="terms" required>
-            <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
-        </div>
-        
-        <button type="submit" class="submit-btn">Registrarme Ahora</button>
-    </form>
-</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Teléfono (Opcional)</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+1 (555) 123-4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">Área de Interés</label>
+                            <select id="interest" name="interest" class="form-control" required>
+                                <option value="" disabled selected>Selecciona tu interés</option>
+                                <option value="web">Desarrollo Web</option>
+                                <option value="data">Ciencia de Datos</option>
+                                <option value="design">Diseño UX/UI</option>
+                                <option value="marketing">Marketing Digital</option>
+                                <option value="ai">Inteligencia Artificial</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">¿Qué te gustaría aprender?</label>
+                        <textarea id="message" name="message" class="form-control" rows="4" placeholder="Cuéntanos tus objetivos de aprendizaje..."></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Registrarme Ahora</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -1129,83 +968,64 @@ function generateAptoOptions() {
         
         // Form submission to Google Apps Script
     document.getElementById('registration-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Recolectar todos los datos del formulario
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-    
-    // Asegurar que el teléfono tenga +58
-    if (data.phone && !data.phone.startsWith('+58')) {
-        data.phone = '+58' + data.phone;
-    }
-    
-    // Validar campos obligatorios
-    const requiredFields = ['cedula', 'name', 'email', 'phone', 'birthdate', 'sex', 'main_interest'];
-    const missingFields = requiredFields.filter(field => !data[field]);
-    
-    if (missingFields.length > 0) {
-        alert(`Por favor, completa los siguientes campos obligatorios: ${missingFields.join(', ')}`);
-        return;
-    }
-    
-    // Validar campos específicos según el interés principal
-    if (data.main_interest === 'Cursos' && !data.course) {
-        alert('Debes seleccionar un curso');
-        return;
-    }
-    if (data.main_interest === 'Comunidad' && (!data.community || !data.comuna || !data.residencia || !data.apto)) {
-        alert('Debes completar todos los campos de comunidad');
-        return;
-    }
-    if (data.main_interest === 'Fundaciones' && !data.foundation) {
-        alert('Debes seleccionar una fundación');
-        return;
-    }
-    
-    // Mostrar estado de carga
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando...';
-    
-    // Enviar datos al Google Apps Script
-    fetch('https://script.google.com/macros/s/AKfycbx2-EVbwCjtcyukHsK6EFSPDEIiZF0pvGtdf4jai2iIzQfYFa88hP9T1v5FS6iWNJbPNQ/exec', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow'
-    })
-    .then(response => {
-        if (response.redirected) {
-            return fetch(response.url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+        e.preventDefault();
+        
+        // Obtener datos del formulario
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+        
+        // Validar campos obligatorios
+        if (!data.name || !data.email || !data.interest) {
+            alert('Por favor, completa todos los campos obligatorios.');
+            return;
+        }
+        
+        // URL de Google Apps Script (usa la nueva URL de despliegue)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx2-EVbwCjtcyukHsK6EFSPDEIiZF0pvGtdf4jai2iIzQfYFa88hP9T1v5FS6iWNJbPNQ/exec';
+        
+        // Mostrar estado de carga
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+        
+        // Enviar como FormData tradicional (evita problemas CORS)
+        const formPayload = new FormData();
+        for (const key in data) {
+            formPayload.append(key, data[key]);
+        }
+        
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formPayload,
+            redirect: 'follow' // Importante para Google Apps Script
+        })
+        .then(response => {
+            // Google Apps Script devuelve redirecciones
+            if (response.redirected) {
+                return fetch(response.url, {
+                    method: 'POST',
+                    body: formPayload
+                });
+            }
+            return response;
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            if (responseData.result === 'success') {
+                openModal(data.name, data.email);
+                this.reset();
+            } else {
+                throw new Error(responseData.error || 'Error en el servidor');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert(`Error al enviar el formulario: ${error.message}`);
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Registrarme Ahora';
             });
-        }
-        return response;
-    })
-    .then(response => response.json())
-    .then(responseData => {
-        if (responseData.result === 'success') {
-            openModal(data.name, data.email);
-            this.reset();
-        } else {
-            throw new Error(responseData.error || 'Error en el servidor');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert(`Error al enviar el formulario: ${error.message}`);
-    })
-    .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Registrarme Ahora';
-    });
         });
         
         // Smooth scrolling for navigation links
