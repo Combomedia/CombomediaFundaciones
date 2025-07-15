@@ -3,640 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CombomediaPlatform - Educación Digital Innovadora</title>
+    <title>Combomedia - Registro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --light-gray: #e2e8f0;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
+            --primary: #219665;
+            --secondary: #00d48d;
+            --accent: #ff6f00;
+            --dark: #111111;
+            --light: #e3f2fd;
+            --success: #4caf50;
+            --error: #f44336;
+            --text: #111111;
+            --text-light: #eceff1;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 28px 60px rgba(0, 0, 0, 0.12);
+            --transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark);
-            background-color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #111111, #1a7e54);
+            color: var(--text);
+            padding: 15px;
+            min-height: 100vh;
+            background-attachment: fixed;
         }
         
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            background-color: var(--card-bg);
+            border-radius: 40px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out forwards;
         }
         
-        /* Header */
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
         header {
-            background-color: rgba(255, 255, 255, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            padding: 20px 0;
-            transition: var(--transition);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-        
-        .logo-icon {
-            background: var(--gradient);
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 22px;
-        }
-        
-        .logo-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 24px;
-            color: var(--primary);
-        }
-        
-        .logo-text span {
-            color: var(--secondary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 16px;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        nav a:hover {
-            color: var(--primary);
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: var(--transition);
-        }
-        
-        nav a:hover::after {
-            width: 100%;
-        }
-        
-        .cta-button {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 180px 0 100px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: var(--gradient);
-            border-radius: 50%;
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-        
-        .hero-text {
-            flex: 1;
-        }
-        
-        .hero-text h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .hero-blob {
-            width: 450px;
-            height: 450px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .hero-blob::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-        
-        .hero-img-content {
-            position: absolute;
-            width: 90%;
-            height: 90%;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        
-        .hero-img-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(37, 99, 235, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 20px;
-        }
-        
-        .stat-text h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .stat-text p {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        /* Form Section */
-        .form-section {
-            padding: 100px 0;
-            background: white;
-        }
-        
-        .section-header {
+            background: linear-gradient(120deg, var(--primary), var(--dark));
+            color: var(--text-light);
+            padding: 25px 20px;
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-        }
-        
-        .section-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--gray);
-        }
-        
-        .form-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 50px;
             position: relative;
             overflow: hidden;
         }
         
-        .form-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--gradient);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-            position: relative;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px 20px;
-            border: 1px solid var(--light-gray);
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-        
-        .checkbox-group input {
-            width: 18px;
-            height: 18px;
-        }
-        
-        .checkbox-group label {
-            font-size: 14px;
-            color: var(--gray);
-            margin-bottom: 0;
-        }
-        
-        .checkbox-group a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 18px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .submit-btn::after {
+        header::before {
             content: "";
             position: absolute;
             top: -50%;
-            left: -60%;
-            width: 20%;
+            left: -50%;
+            width: 200%;
             height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(25deg);
-            transition: all 0.4s;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+            transform: rotate(30deg);
+            pointer-events: none;
         }
         
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
-        }
-        
-        .submit-btn:hover::after {
-            left: 120%;
-        }
-        
-        /* Database Visualization */
-        .database-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
-        }
-        
-        .database-visual {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        
-        .db-header {
-            background: var(--gradient);
-            color: white;
-            padding: 20px 30px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+        .logo {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 22px;
+            font-weight: bold;
             display: flex;
             align-items: center;
-            gap: 15px;
+            z-index: 2;
         }
         
-        .db-table {
+        .logo-icon {
+            margin-right: 8px;
+            font-size: 28px;
+            color: var(--secondary);
+            filter: drop-shadow(0 0 5px rgba(0, 188, 212, 0.5));
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            font-size: 2.0rem;
+            margin: 15px 0 8px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.0rem;
+            opacity: 0.85;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(13, 71, 161, 0.1);
+            transition: var(--transition);
+        }
+        
+        .form-container:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            margin-bottom: 25px;
         }
         
-        .db-table th {
-            background-color: rgba(37, 99, 235, 0.1);
-            padding: 15px 20px;
+        th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px 18px;
             text-align: left;
+            font-size: 1.0rem;
+            font-weight: 600;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        td {
+            padding: 16px 18px;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        td:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+        
+        td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+        
+        tr:hover td {
+            background-color: #edf7ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.08);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--primary);
-            border-bottom: 2px solid var(--light-gray);
+            position: relative;
+            padding-left: 4px;
+            font-size: 0.9rem;
         }
         
-        .db-table td {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--light-gray);
-            color: var(--dark);
+        label::after {
+            content: "*";
+            color: var(--error);
+            margin-left: 3px;
         }
         
-        .db-table tr:nth-child(even) {
-            background-color: rgba(226, 232, 240, 0.3);
-        }
-        
-        .db-table tr:hover {
-            background-color: rgba(37, 99, 235, 0.05);
-        }
-        
-        /* Features */
-        .features {
-            padding: 100px 0;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow);
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
             transition: var(--transition);
+            background-color: white;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.2);
+        }
+        
+        input[type="radio"] {
+            width: auto;
+            margin-right: 6px;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 6px;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+            padding: 6px 14px;
+            background: rgba(13, 71, 161, 0.05);
+            border-radius: 6px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .radio-group label:hover {
+            background: rgba(13, 71, 161, 0.1);
+        }
+        
+        .btn-container {
             text-align: center;
+            margin-top: 25px;
+        }
+        
+        button {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 1.0rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(13, 71, 161, 0.3);
             position: relative;
             overflow: hidden;
         }
         
-        .feature-card::before {
-            content: '';
+        button::before {
+            content: "";
             position: absolute;
             top: 0;
-            left: 0;
-            width: 5px;
+            left: -100%;
+            width: 100%;
             height: 100%;
-            background: var(--gradient);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(13, 71, 161, 0.4);
         }
         
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(37, 99, 235, 0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--primary);
-            font-size: 32px;
-            transition: var(--transition);
+        button:hover::before {
+            left: 100%;
         }
         
-        .feature-card:hover .feature-icon {
-            background: var(--gradient);
-            color: white;
-            transform: scale(1.1);
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(13, 71, 161, 0.3);
         }
         
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .feature-card p {
-            color: var(--gray);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 80px 0 40px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        
-        .footer-col h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+        .instructions {
+            background: linear-gradient(to right, rgba(227, 242, 253, 0.8), rgba(179, 229, 252, 0.6));
+            border-left: 4px solid var(--primary);
+            padding: 18px 20px;
+            margin: 20px 0 30px;
+            border-radius: 0 10px 10px 0;
             position: relative;
+            overflow: hidden;
         }
         
-        .footer-col h3::after {
-            content: '';
+        .instructions::before {
+            content: "ℹ";
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient);
+            top: 8px;
+            right: 15px;
+            font-size: 60px;
+            opacity: 0.1;
+            font-weight: bold;
+            pointer-events: none;
         }
         
-        .footer-col p {
-            color: var(--light-gray);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+        .instructions h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            transition: var(--transition);
+            gap: 8px;
         }
         
-        .social-links a:hover {
-            background: var(--gradient);
-            transform: translateY(-5px);
+        .instructions h3 i {
+            color: var(--secondary);
         }
         
-        .footer-links {
-            list-style: none;
+        .instructions p {
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
         
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-        
-        .footer-links a {
-            text-decoration: none;
-            color: var(--light-gray);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        .footer-links i {
-            color: var(--primary);
-            font-size: 14px;
-        }
-        
-        .copyright {
+        .footer {
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--light-gray);
-            font-size: 14px;
+            padding: 25px 15px;
+            color: #546e7a;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 25px;
+            background: rgba(13, 71, 161, 0.03);
+            border-radius: 0 0 20px 20px;
         }
         
-        /* Modal de Confirmación */
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 30px 0 15px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary), transparent);
+            margin-left: 8px;
+        }
+        
+        .section-title i {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
         .modal {
             display: none;
             position: fixed;
@@ -644,548 +364,787 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
             align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
+            padding: 35px;
+            border-radius: 18px;
+            max-width: 450px;
             width: 90%;
             text-align: center;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            animation: modalIn 0.4s ease-out;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
         
-        .modal-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
+        @keyframes modalAppear {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 40px;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
         }
         
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--gray);
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-icon {
+            color: var(--success);
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: bounce 0.6s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+            40% {transform: translateY(-25px);} 
+            60% {transform: translateY(-12px);} 
+        }
+        
+        .error-icon {
+            color: var(--error);
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: shake 0.6s;
+        }
+        
+        @keyframes shake {
+            0%, 100% {transform: translateX(0);}
+            20%, 60% {transform: translateX(-8px);}
+            40%, 80% {transform: translateX(8px);}
+        }
+        
+        .modal-btn {
+            margin-top: 25px;
+            background: var(--primary);
+            padding: 12px 30px;
+            font-size: 1.0rem;
+            border-radius: 8px;
             transition: var(--transition);
         }
         
-        .close-modal:hover {
+        .modal-btn:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .conditional-section {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f1f8ff;
+            border-radius: 14px;
+            border-left: 4px solid var(--secondary);
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .conditional-section h3 {
+            color: var(--dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .conditional-section h3 i {
+            color: var(--secondary);
+        }
+        
+        .select-container {
+            position: relative;
+        }
+        
+        .select-container::after {
+            content: "▼";
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            transform: translateY(-50%);
             color: var(--primary);
+            pointer-events: none;
+            font-size: 0.8rem;
         }
         
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        select {
+            appearance: none;
+            background-color: white;
         }
         
-        @keyframes modalIn {
-            0% { transform: translateY(-50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        /* Efecto de onda en botones */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
         }
         
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero-text {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .stats {
-                justify-content: center;
-            }
-            
-            .hero-blob {
-                width: 350px;
-                height: 350px;
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
             }
         }
         
+        /* Nuevos estilos para el campo de búsqueda */
+        .search-container {
+            position: relative;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 180px;
+            overflow-y: auto;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: none;
+        }
+        
+        .search-results div {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .search-results div:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .search-results div.selected {
+            background-color: var(--light);
+            font-weight: 600;
+        }
+        
+        /* Media queries para dispositivos móviles */
         @media (max-width: 768px) {
-            .form-row {
-                flex-direction: column;
-                gap: 0;
+            body {
+                padding: 8px;
+            }
+            
+            .container {
+                margin: 0 auto;
+                border-radius: 30px;
+                width: calc(100% - 16px);
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            .logo {
+                position: static;
+                justify-content: center;
+                margin-bottom: 12px;
+                font-size: 1.2rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+                margin: 10px 0 5px;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .content {
+                padding: 15px;
             }
             
             .form-container {
-                padding: 30px;
+                padding: 15px;
+                border-radius: 14px;
             }
             
-            nav {
+            table, tbody, tr, td {
+                display: block;
+                width: 100%;
+            }
+            
+            tr {
+                margin-bottom: 20px;
+                border: 1px solid #e0e0e0;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+            }
+            
+            td {
+                padding: 14px 16px;
+                border-bottom: 1px solid #e0e0e0;
+                border-radius: 0 !important;
+            }
+            
+            td:first-child {
+                border-top: none;
+            }
+            
+            td:last-child {
+                border-bottom: none;
+            }
+            
+            th {
                 display: none;
             }
             
-            .hero-text h1 {
-                font-size: 2.5rem;
+            .radio-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+                margin: 25px 0 12px;
+            }
+            
+            .search-results {
+                position: relative;
+                max-height: 140px;
+            }
+            
+            .instructions {
+                padding: 15px;
+                margin: 15px 0 25px;
+            }
+            
+            .instructions h3 {
+                font-size: 1.0rem;
+            }
+            
+            .instructions p {
+                font-size: 0.9rem;
+            }
+            
+            .footer {
+                padding: 20px 10px;
+                font-size: 0.8rem;
+            }
+            
+            button {
+                padding: 12px 35px;
+                font-size: 0.95rem;
+            }
+            
+            .modal-content {
+                padding: 25px;
+            }
+            
+            .success-icon, .error-icon {
+                font-size: 50px;
             }
         }
-        
-        @media (max-width: 576px) {
-            .stats {
-                flex-direction: column;
-                align-items: center;
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
             }
             
-            .hero-blob {
-                width: 280px;
-                height: 280px;
+            .container {
+                border-radius: 25px;
+                width: calc(100% - 10px);
             }
             
-            .feature-card {
-                padding: 30px 20px;
+            header {
+                padding: 15px 10px;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .content {
+                padding: 10px;
+            }
+            
+            .form-container {
+                padding: 12px;
+            }
+            
+            td {
+                padding: 12px 14px;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .conditional-section {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">C</div>
-                <div class="logo-text">Combo<span>media</span>Platform</div>
-            </a>
-            
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#cursos">Cursos</a></li>
-                    <li><a href="#beneficios">Beneficios</a></li>
-                    <li><a href="#sql">SQL Integration</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-            
-            <button class="cta-button">Acceso Estudiantes</button>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Transforma tu educación con tecnología innovadora</h1>
-                <p>CombomediaPlatform democratiza el conocimiento con cursos en línea de alta calidad. Únete a nuestra comunidad y revoluciona tu aprendizaje.</p>
-                <button class="cta-button">Comienza Ahora</button>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="stat-text">
-                            <h3>5K+</h3>
-                            <p>Estudiantes</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="stat-text">
-                            <h3>120+</h3>
-                            <p>Cursos</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <div class="stat-text">
-                            <h3>SQL</h3>
-                            <p>Integración Segura</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🌐</span>
+                Combomedia
             </div>
-            
-            <div class="hero-image">
-                <div class="hero-blob">
-                    <div class="hero-img-content">
-                        <div style="background: linear-gradient(45deg, #e0f2fe, #dbeafe); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 30px;">
-                            <i class="fas fa-database" style="font-size: 100px; color: #2563eb; margin-bottom: 20px;"></i>
-                            <p style="color: var(--dark); font-weight: 600; text-align: center;">Integración SQL Segura</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Form Section -->
-    <section class="form-section" id="contacto">
-        <div class="container">
-            <div class="section-header">
-                <h2>Únete a nuestra comunidad</h2>
-                <p>Regístrate ahora para acceder a contenido exclusivo, descuentos especiales y transformar tu educación con tecnología innovadora.</p>
+            <h1>Registro</h1>
+            <p class="subtitle">Complete todos los datos requeridos para el registro en el sistema</p>
+        </header>
+        
+        <div class="content">
+            <div class="instructions">
+                <h3>Instrucciones:</h3>
+                <p>Por favor complete todos los campos del formulario. Los campos marcados con asterisco (*) son obligatorios.</p>
             </div>
             
             <div class="form-container">
-                <form id="registration-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Nombre Completo</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
-                        </div>
+                <form id="formVendedor">
+                    <h2 class="section-title">Datos Personales</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="nombre">Nombre *</label>
+                                <input type="text" id="nombre" required>
+                            </td>
+                            <td>
+                                <label for="apellido">Apellido *</label>
+                                <input type="text" id="apellido" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="cedula">Cédula *</label>
+                                <input type="text" id="cedula" placeholder="Ej: 12345678" required>
+                            </td>
+                            <td>
+                                <label for="telefono">Teléfono *</label>
+                                <input type="tel" id="telefono" placeholder="Ej: 04121234567" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="correo">Correo Electrónico *</label>
+                                <input type="email" id="correo" placeholder="Ej: nombre@ejemplo.com" required>
+                            </td>
+                            <td>
+                                <label for="fecha_nac">Fecha de Nacimiento *</label>
+                                <input type="date" id="fecha_nac" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="sexo">Sexo *</label>
+                                <select id="sexo" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="interes">Interés *</label>
+                                <select id="interes" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Comuna">Comuna</option>
+                                    <option value="Fundacion">Fundación</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Sección condicional para Comuna -->
+                    <div id="comunaSection" class="conditional-section">
+                        <h3>Datos de Comuna</h3>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="comuna">Comuna *</label>
+                                    <select id="comuna">
+                                        <option value="">Seleccione una comuna</option>
+                                        <option value="Parque Central">Parque Central</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                         
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                        <div id="residenciaSection" class="conditional-section">
+                            <h3>Datos de Residencia</h3>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="residencia">Residencia *</label>
+                                        <select id="residencia">
+                                            <option value="">Seleccione una residencia</option>
+                                            <option value="Tejar">Tejar</option>
+                                            <option value="San Martin">San Martin</option>
+                                            <option value="Mohedano">Mohedano</option>
+                                            <option value="Anauco">Anauco</option>
+                                            <option value="Tajama">Tajama</option>
+                                            <option value="Catuche">Catuche</option>
+                                            <option value="Caroata">Caroata</option>
+                                            <option value="Tacagua">Tacagua</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <div id="aptoSection" class="conditional-section">
+                                <h3>Datos de Apartamento</h3>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label for="apto">Apto *</label>
+                                            <select id="apto">
+                                                <option value="">Seleccione un apto</option>
+                                                <option value="01A">01A</option>
+                                                <option value="01B">01B</option>
+                                                <option value="01C">01C</option>
+                                                <option value="01D">01D</option>
+                                                <option value="01E">01E</option>
+                                                <option value="01F">01F</option>
+                                                <option value="01G">01G</option>
+                                                <option value="01H">01H</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Teléfono (Opcional)</label>
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+1 (555) 123-4567">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="interest">Área de Interés</label>
-                            <select id="interest" name="interest" class="form-control" required>
-                                <option value="" disabled selected>Selecciona tu interés</option>
-                                <option value="web">Desarrollo Web</option>
-                                <option value="data">Ciencia de Datos</option>
-                                <option value="design">Diseño UX/UI</option>
-                                <option value="marketing">Marketing Digital</option>
-                                <option value="ai">Inteligencia Artificial</option>
-                                <option value="other">Otro</option>
-                            </select>
-                        </div>
+                    <!-- Sección condicional para Fundación -->
+                    <div id="fundacionSection" class="conditional-section">
+                        <h3>Datos de Fundación</h3>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="fundaciones">Fundaciones *</label>
+                                    <select id="fundaciones">
+                                        <option value="">Seleccione una fundación</option>
+                                        <option value="Misión Ribas">Misión Ribas</option>
+                                        <option value="Fundación Causa Campesina">Fundación Causa Campesina</option>
+                                        <option value="Observatorio Popular de medios">Observatorio Popular de medios</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="message">¿Qué te gustaría aprender?</label>
-                        <textarea id="message" name="message" class="form-control" rows="4" placeholder="Cuéntanos tus objetivos de aprendizaje..."></textarea>
+                    <div class="btn-container">
+                        <button type="submit">Enviar Datos</button>
                     </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Registrarme Ahora</button>
                 </form>
             </div>
-        </div>
-    </section>
-
-    <!-- Database Visualization -->
-    <section class="database-section" id="sql">
-        <div class="container">
-            <div class="section-header">
-                <h2>Integración SQL Segura</h2>
-                <p>Nuestro sistema almacena tus datos de forma segura en una base de datos SQL profesional</p>
-            </div>
             
-            <div class="database-visual">
-                <div class="db-header">
-                    <i class="fas fa-database"></i>
-                    <span>Registros de Estudiantes</span>
-                </div>
-                
-                <table class="db-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Interés</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#1001</td>
-                            <td>María López</td>
-                            <td>maria@ejemplo.com</td>
-                            <td>Desarrollo Web</td>
-                            <td>2023-11-15</td>
-                        </tr>
-                        <tr>
-                            <td>#1002</td>
-                            <td>Carlos Rodríguez</td>
-                            <td>carlos@ejemplo.com</td>
-                            <td>Ciencia de Datos</td>
-                            <td>2023-11-14</td>
-                        </tr>
-                        <tr>
-                            <td>#1003</td>
-                            <td>Ana Martínez</td>
-                            <td>ana@ejemplo.com</td>
-                            <td>Diseño UX/UI</td>
-                            <td>2023-11-13</td>
-                        </tr>
-                        <tr>
-                            <td>#1004</td>
-                            <td>Pedro Sánchez</td>
-                            <td>pedro@ejemplo.com</td>
-                            <td>Marketing Digital</td>
-                            <td>2023-11-12</td>
-                        </tr>
-                        <tr>
-                            <td>#1005</td>
-                            <td>Laura Gómez</td>
-                            <td>laura@ejemplo.com</td>
-                            <td>Inteligencia Artificial</td>
-                            <td>2023-11-10</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="footer">
+                <p>Sistema de Registro &copy; 2025 - Combomedia</p>
+                <p>Los datos se guardan automáticamente en nuestra base de datos</p>
             </div>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="beneficios">
-        <div class="container">
-            <div class="section-header">
-                <h2>Beneficios Exclusivos</h2>
-                <p>Descubre por qué miles de estudiantes eligen CombomediaPlatform para su transformación educativa</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Acceso Global</h3>
-                    <p>Aprende desde cualquier lugar del mundo con nuestra plataforma 100% en línea disponible 24/7.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Contenido Actualizado</h3>
-                    <p>Cursos diseñados con las últimas tendencias tecnológicas y mejores prácticas educativas.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Comunidad Activa</h3>
-                    <p>Conecta con profesionales y entusiastas apasionados por la tecnología y la educación.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Almacenamiento Seguro</h3>
-                    <p>Tus datos protegidos con tecnología SQL avanzada y medidas de seguridad de última generación.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Soporte Personalizado</h3>
-                    <p>Recibe orientación de instructores expertos y resuelve tus dudas en tiempo real.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Certificaciones</h3>
-                    <p>Obtén certificados reconocidos que validan tus nuevas habilidades y conocimientos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="#" class="logo" style="margin-bottom: 20px; display: inline-block;">
-                        <div class="logo-icon">C</div>
-                        <div class="logo-text" style="color: white;">Combo<span style="color: var(--secondary);">media</span>Platform</div>
-                    </a>
-                    <p>Somos apasionados generadores de contenido de valor, comprometidos con la transformación educativa y tecnológica.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
-                        <li><a href="#cursos"><i class="fas fa-chevron-right"></i> Cursos</a></li>
-                        <li><a href="#beneficios"><i class="fas fa-chevron-right"></i> Beneficios</a></li>
-                        <li><a href="#sql"><i class="fas fa-chevron-right"></i> SQL Integration</a></li>
-                        <li><a href="#contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Categorías</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Desarrollo Web</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ciencia de Datos</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Inteligencia Artificial</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Marketing Digital</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Diseño UX/UI</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contacto</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Av. Innovación 123, Ciudad Tecnológica</a></li>
-                        <li><a href="mailto:info@combomediaplatform.com"><i class="fas fa-envelope"></i> info@combomediaplatform.com</a></li>
-                        <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 (234) 567-890</a></li>
-                        <li><a href="#"><i class="fas fa-clock"></i> Lunes-Viernes: 9AM - 6PM</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 CombomediaPlatform. Todos los derechos reservados. | #EducaciónDigital #TecnologíaEducativa #AprendeEnLínea</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modal de Confirmación -->
-    <div class="modal" id="confirmation-modal">
+    </div>
+    
+    <!-- Modal para mostrar estado del envío -->
+    <div class="modal" id="statusModal">
         <div class="modal-content">
-            <span class="close-modal" id="close-modal">&times;</span>
-            <div class="modal-icon">
-                <i class="fas fa-check"></i>
-            </div>
-            <h2>¡Registro Exitoso!</h2>
-            <p id="confirmation-message">Gracias por unirte a CombomediaPlatform. Tus datos han sido almacenados de forma segura en nuestra base de datos SQL.</p>
-            <p>Bienvenido a nuestra comunidad educativa.</p>
-            <button class="cta-button" style="margin-top: 20px;" id="modal-close-btn">Continuar</button>
+            <div id="spinner" class="spinner"></div>
+            <div id="successIcon" class="success-icon" style="display: none;">✓</div>
+            <div id="errorIcon" class="error-icon" style="display: none;">✗</div>
+            <h3 id="modalTitle">Enviando datos...</h3>
+            <p id="modalMessage">Por favor espere mientras procesamos su información</p>
+            <button class="modal-btn" id="modalButton" style="display: none;">Aceptar</button>
         </div>
     </div>
 
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.padding = '10px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        // Mostrar/ocultar secciones condicionales
+        function toggleConditionalSections() {
+            const interes = document.getElementById('interes').value;
+            const comunaSection = document.getElementById('comunaSection');
+            const fundacionSection = document.getElementById('fundacionSection');
+            
+            // Resetear campos al cambiar
+            document.getElementById('comuna').value = '';
+            document.getElementById('residencia').value = '';
+            document.getElementById('apto').value = '';
+            document.getElementById('fundaciones').value = '';
+            document.getElementById('residenciaSection').style.display = 'none';
+            document.getElementById('aptoSection').style.display = 'none';
+            
+            if (interes === 'Comuna') {
+                comunaSection.style.display = 'block';
+                fundacionSection.style.display = 'none';
+            } else if (interes === 'Fundacion') {
+                comunaSection.style.display = 'none';
+                fundacionSection.style.display = 'block';
             } else {
-                header.style.padding = '20px 0';
-                header.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.05)';
+                comunaSection.style.display = 'none';
+                fundacionSection.style.display = 'none';
             }
-        });
-        
-        // Modal functionality
-        const modal = document.getElementById('confirmation-modal');
-        const closeModal = document.getElementById('close-modal');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
-        
-        function openModal(name, email) {
-            document.getElementById('confirmation-message').textContent = 
-                `¡Gracias ${name}! Tu registro ha sido exitoso. Tus datos han sido almacenados de forma segura en nuestra base de datos SQL.`;
-            modal.style.display = 'flex';
         }
         
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        modalCloseBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+        // Mostrar/ocultar residencias según comuna
+        function toggleResidencias() {
+            const comuna = document.getElementById('comuna').value;
+            const residenciaSection = document.getElementById('residenciaSection');
+            
+            // Resetear campos al cambiar
+            document.getElementById('residencia').value = '';
+            document.getElementById('apto').value = '';
+            document.getElementById('aptoSection').style.display = 'none';
+            
+            if (comuna === 'Parque Central') {
+                residenciaSection.style.display = 'block';
+            } else {
+                residenciaSection.style.display = 'none';
             }
+        }
+        
+        // Mostrar/ocultar aptos según residencia
+        function toggleAptos() {
+            const residencia = document.getElementById('residencia').value;
+            const aptoSection = document.getElementById('aptoSection');
+            
+            // Resetear campo al cambiar
+            document.getElementById('apto').value = '';
+            
+            if (residencia) {
+                aptoSection.style.display = 'block';
+            } else {
+                aptoSection.style.display = 'none';
+            }
+        }
+        
+        // Configurar eventos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fecha de nacimiento (25 años atrás)
+            const fechaNac = new Date();
+            fechaNac.setFullYear(fechaNac.getFullYear() - 25);
+            document.getElementById('fecha_nac').value = fechaNac.toISOString().split('T')[0];
+            
+            // Event listeners para campos condicionales
+            document.getElementById('interes').addEventListener('change', toggleConditionalSections);
+            document.getElementById('comuna').addEventListener('change', toggleResidencias);
+            document.getElementById('residencia').addEventListener('change', toggleAptos);
+            
+            // Configurar botón de modal
+            document.getElementById('modalButton').addEventListener('click', hideModal);
         });
         
-        // Form submission to SQL via PHP
-        document.getElementById('registration-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Función para mostrar modal
+        function showModal(title, message, isSuccess, showButton) {
+            const modal = document.getElementById('statusModal');
+            const spinner = document.getElementById('spinner');
+            const successIcon = document.getElementById('successIcon');
+            const errorIcon = document.getElementById('errorIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalButton = document.getElementById('modalButton');
             
-            // Obtener datos del formulario
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
             
-            // Validar campos obligatorios
-            if (!data.name || !data.email || !data.interest) {
-                alert('Por favor, completa todos los campos obligatorios.');
-                return;
+            if (isSuccess) {
+                spinner.style.display = 'none';
+                successIcon.style.display = 'block';
+                modalButton.style.display = 'block';
+            } else if (isSuccess === false) {
+                spinner.style.display = 'none';
+                errorIcon.style.display = 'block';
+                modalButton.style.display = 'block';
+            } else {
+                spinner.style.display = 'block';
+                successIcon.style.display = 'none';
+                errorIcon.style.display = 'none';
+                modalButton.style.display = 'none';
             }
             
-            // Mostrar estado de carga
-            const submitBtn = document.querySelector('.submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
+            modal.style.display = 'flex';
             
-            // Enviar a PHP usando Fetch API
-            fetch('guardar_registro.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+            if (showButton) {
+                modalButton.style.display = 'block';
+            }
+        }
+        
+        // Función para ocultar modal
+        function hideModal() {
+            document.getElementById('statusModal').style.display = 'none';
+        }
+        
+        // Función para validar formulario
+        function validarFormulario() {
+            // Validación de cédula (8-10 dígitos)
+            const cedula = document.getElementById('cedula').value;
+            if (!/^\d{8,10}$/.test(cedula)) {
+                showModal('Error', 'Cédula inválida: debe tener entre 8 y 10 dígitos numéricos', false, true);
+                return false;
+            }
+
+            // Validación de teléfono (10-11 dígitos)
+            const telefono = document.getElementById('telefono').value;
+            if (!/^\d{10,11}$/.test(telefono)) {
+                showModal('Error', 'Teléfono inválido: debe tener 10 o 11 dígitos numéricos', false, true);
+                return false;
+            }
+
+            // Validación de correo
+            const correo = document.getElementById('correo').value;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+                showModal('Error', 'Correo electrónico inválido: por favor ingrese un correo válido', false, true);
+                return false;
+            }
+
+            // Validación de fecha de nacimiento
+            const fechaNac = new Date(document.getElementById('fecha_nac').value);
+            const hoy = new Date();
+            if (fechaNac >= hoy) {
+                showModal('Error', 'Fecha de nacimiento inválida: debe ser una fecha anterior al día de hoy', false, true);
+                return false;
+            }
+
+            // Validación de sexo
+            const sexo = document.getElementById('sexo').value;
+            if (!sexo) {
+                showModal('Error', 'Por favor seleccione el sexo', false, true);
+                return false;
+            }
+            
+            // Validación de interés
+            const interes = document.getElementById('interes').value;
+            if (!interes) {
+                showModal('Error', 'Por favor seleccione el tipo de interés', false, true);
+                return false;
+            }
+            
+            // Validación de campos condicionales
+            if (interes === 'Comuna') {
+                const comuna = document.getElementById('comuna').value;
+                const residencia = document.getElementById('residencia').value;
+                const apto = document.getElementById('apto').value;
+                
+                if (!comuna) {
+                    showModal('Error', 'Por favor seleccione una comuna', false, true);
+                    return false;
+                }
+                
+                if (!residencia) {
+                    showModal('Error', 'Por favor seleccione una residencia', false, true);
+                    return false;
+                }
+                
+                if (!apto) {
+                    showModal('Error', 'Por favor seleccione un apto', false, true);
+                    return false;
+                }
+            } else if (interes === 'Fundacion') {
+                const fundaciones = document.getElementById('fundaciones').value;
+                if (!fundaciones) {
+                    showModal('Error', 'Por favor seleccione una fundación', false, true);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        
+        // Función para enviar datos a Google Sheets
+        function enviarDatosGoogleSheets() {
+            // URL del script de Google Apps (debes reemplazarlo con tu propio script)
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyhYaNohB1OV2EMpCPkHiBbxwcz1nPH605p0D3LEsDnMyQ-zJHzGOs6pRNj_XjIbBKB/exec';
+            
+            // Obtener valores del formulario
+            const formData = new FormData();
+            formData.append('nombre', document.getElementById('nombre').value);
+            formData.append('apellido', document.getElementById('apellido').value);
+            formData.append('cedula', document.getElementById('cedula').value);
+            formData.append('telefono', document.getElementById('telefono').value);
+            formData.append('correo', document.getElementById('correo').value);
+            formData.append('fecha_nac', document.getElementById('fecha_nac').value);
+            formData.append('sexo', document.getElementById('sexo').value);
+            formData.append('interes', document.getElementById('interes').value);
+            
+            // Agregar campos condicionales según la selección
+            const interes = document.getElementById('interes').value;
+            if (interes === 'Comuna') {
+                formData.append('comuna', document.getElementById('comuna').value);
+                formData.append('residencia', document.getElementById('residencia').value);
+                formData.append('apto', document.getElementById('apto').value);
+                formData.append('fundaciones', ''); // Campo vacío para fundaciones
+            } else if (interes === 'Fundacion') {
+                formData.append('comuna', ''); // Campo vacío para comuna
+                formData.append('residencia', ''); // Campo vacío para residencia
+                formData.append('apto', ''); // Campo vacío para apto
+                formData.append('fundaciones', document.getElementById('fundaciones').value);
+            }
+            
+            // Enviar datos mediante fetch
+            fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Error en la respuesta del servidor');
             })
-            .then(response => response.json())
-            .then(responseData => {
-                if (responseData.status === 'success') {
-                    openModal(data.name, data.email);
-                    this.reset();
+            .then(data => {
+                if (data.result === 'success') {
+                    showModal('Éxito', 'Datos enviados correctamente', true, true);
+                    document.getElementById('formVendedor').reset();
+                    
+                    // Restablecer fechas después de enviar
+                    const fechaNac = new Date();
+                    fechaNac.setFullYear(fechaNac.getFullYear() - 25);
+                    document.getElementById('fecha_nac').value = fechaNac.toISOString().split('T')[0];
+                    
+                    // Ocultar secciones condicionales
+                    document.getElementById('comunaSection').style.display = 'none';
+                    document.getElementById('fundacionSection').style.display = 'none';
                 } else {
-                    throw new Error(responseData.message || 'Error en el servidor');
+                    showModal('Error', 'Hubo un problema al guardar los datos', false, true);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert(`Error al enviar el formulario: ${error.message}`);
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Registrarme Ahora';
+                showModal('Error', 'Hubo un problema al enviar los datos: ' + error.message, false, true);
             });
-        });
+        }
         
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Manejador de envío de formulario
+        document.getElementById('formVendedor').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validarFormulario()) {
+                showModal('Enviando', 'Por favor espere mientras enviamos sus datos', null, false);
+                setTimeout(enviarDatosGoogleSheets, 1500);
+            }
         });
     </script>
 </body>
